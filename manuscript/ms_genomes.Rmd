@@ -1,0 +1,392 @@
+---
+title: "Draft genomes of the three northern hemisphere blue mussel species: *Mytilus edulis*, *Mytilus galloprovincialis* and *Mytilus trossulus*"
+author:
+  - Alexis Simon^1^*
+  - Christine Arbiol^1^
+  - Nicolas Bierne^1^
+date: '`r Sys.Date()`'
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    fig_width: 7
+    fig_height: 7
+    df_print: kable
+    keep_tex: yes
+    number_sections: yes
+    toc: no
+    includes:
+      in_header: header.tex
+  html_document:
+    toc: no
+documentclass: article
+# classoption: twocolumn, landscape, etc
+papersize: a4
+pagestyle: plain  # plain, empty, headings
+geometry: margin=1in
+#linestretch: 2
+fontfamily: mathpazo
+fontsize: 11pt
+bibliography: 
+  - references.bib
+  - knitcitations.bib
+# zotero: "My shared Zotero group"
+csl: g3.csl
+# csl: https://www.zotero.org/styles/ecology
+link-citations: yes
+linkcolor: RoyalBlue
+urlcolor: RoyalBlue
+links-as-notes: false
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+<!--# Insert author affiliations below -->
+
+\small
+
+^1^ CNRS, Univ Montpellier, ...
+
+`*` Corresponding author: [alexis.simon\@normalesup.org](mailto:alexis.simon@normalesup.org){.email}
+
+\normalsize
+
+<!--# Write Abstract and Keywords below -->
+
+```{=tex}
+\vspace{1cm}
+\hrule
+```
+Using the 10X chromium long reads technology, we provide draft genomes for three closely related blue mussel species from the *Mytilus* species complex.
+The objective was to produce affordable genomic resources for population and evolutionary genomic studies.
+Genomes are fragmented but represent a large portion of the genome, with good sizes and BUSCO scores.
+
+```{=tex}
+\vspace{3mm}
+\hrule
+\vspace{5mm}
+```
+*Keywords*: *Mytilus edulis*, *Mytilus galloprovincialis*, *Mytilus trossulus*, Genome assembly, 10X chromium
+
+```{=tex}
+\bleft
+\newpage
+```
+```{r setup, include=FALSE, cache=FALSE, message = FALSE}
+
+library("knitr")
+
+### Chunk options: see http://yihui.name/knitr/options/ ###
+## Text results
+opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+## Code decoration
+opts_chunk$set(tidy = TRUE, comment = NA, highlight = TRUE)
+
+## Cache
+# opts_chunk$set(cache = 2, cache.path = "output/cache/")
+
+## Plots
+opts_chunk$set(fig.path = "output/figures/")
+```
+
+```{r knitcitations, cache = FALSE}
+library(knitcitations)
+cleanbib()
+cite_options(citation_format = "pandoc")
+```
+
+```{r libraries, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+<!--# Start writing your paper below -->
+
+# Introduction
+
+Write your introduction here.
+
+------------------------------------------------------------------------
+
+# Methods
+
+## Biological material and DNA extraction
+
+One individual for each species of interest was collected and processed fresh.
+
+Collection locations: - *Mytilus galloprovincialis* Sète, France, - *M. edulis* ???
+- *M. trossulus* ???
+
+Whole mussels were placed in 50 mL falcon tubes containing 25 ml of TNES-Urea solution and incubated for 4-6 weeks at room temperature (TNES-Urea: 10 mM Tris-HCl pH 7.4; 120 mM NaCl; 10 mM EDTA pH 8.0; 0.5% SDS; 4 M urea).
+
+After this period of pre-treatment at ambient temperature, proteinase K was added at a final concentration of 150 $\mu$g/mL and the solution was incubated overnight at 56°C.
+
+High Molecular weight genomic DNA was extracted following (From Nakayama et al., 1994, Chromosoma).
+We used a 15 mL Phase Lock Gel Heavy extraction with 3 steps of phenol/chloroform/isoamylalcool (25/24/1) Tris pH 8,1 followed by 2 chloroform extractions.
+After the last extraction, the aqueous supernatant was precipitated with 2 volumes of 100% EtOH and the pellet was hooked from the solution with a sterile glass Pasteur pipette.
+The pellet was rinsed several times in 80% EtOH before being dried at room temperature.
+
+DNA was resuspended with an appropriate volume of biomolecular water at 65°C for several hours, the duration of this incubation depending on the size of the granules.
+DNA was then stored at 4°C.
+
+Prior to the construction of the DNA libraries, DNA was repaired with NEBNext FFPE DNA Repair Mix according to the manufacturer's instructions.
+
+## Library preparation and sequencing
+
+The 10X chromium library preparation and sequencing was subcontracted to the MGX platform (Montpellier, France).
+
+They followed 10X Genomics Genome Reagen Kit (*Genome Solution*) protocol to produce the 10X linked reads library using a Chromium microfluidic chip.
+
+The library was sequenced on an Illumina NovaSeq 6000 with an S4 flowcell.
+
+## Draft genome assemblies
+
+Explain here v1, v4, v5
+
+-   v1: `Supernova` v2.1.1
+-   v4: `purge_dups` (`longranger align`)
+-   v5: `agouti` using RNAseq data (`augustus` to get gff3, RNAseq `rcorrector` + `trimgalore` + `bwa-mem2` + merge bams). RNAseq data are from both NCBI and Maurine's/Erika's experiments.
+-   v6: blobtoolkit filtration based on groups
+
+-\> gives mtro_01, medu_01, mgal_01
+
+## *M. trossulus* assembly improvement using minion reads and *M. coruscus* assembly
+
+-   `LRScaf` using ONT reads (`minimap2` alignment)
+-   `RagTag` using *M. coruscus* chromosomal assembly
+-   `Pilon` using PE reads from 10X library (debarcoded + filtered with `fastp`, `bwa-mem2` alignement) + ONT reads
+
+-\> gives mtro_02 (tros_v7)
+
+## Repeats ???
+
+## Annotation ???
+
+## Document softwares, versions and DOIs:
+
+-   Supernova v2.1.1 [cite](https://doi.org/10.1101/gr.214874.116)
+-   Longranger v2.2.2
+-   proc10xG <https://github.com/ucdavis-bioinformatics/proc10xG> commit 7afbfcf
+-   nubeam-dedup <https://github.com/daihang16/nubeamdedup> commit 25dd385 [cite](https://doi.org/10.1093/bioinformatics/btaa112)
+-   KMC <https://github.com/tbenavi1/KMC> commit 1df71f6
+-   GenomeScope 2.0 <https://github.com/tbenavi1/genomescope2.0> commit 5034ed4 [cite](https://doi.org/10.1038/s41467-020-14998-3)
+-   (? Smudgeplot commit 950d7b5)
+-   Purge_Dups <https://github.com/dfguan/purge_dups> commit e1934bb [cite](https://doi.org/10.1093/bioinformatics/btaa025)
+-   AGOUTI <https://github.com/svm-zhang/AGOUTI> commit a7e65d6 [cite](https://doi.org/10.1186/s13742-016-0136-3)
+-   augustus v3.3.3 (for AGOUTI analysis) [@Stanke2008]
+-   Blobtoolkit v2.4.0 [cite](https://doi.org/10.1534/g3.119.400908)
+-   KAT v2.4.2 [cite](https://doi.org/10.1093/bioinformatics/btw663)
+-   fastp v0.20.1 [@Chen2018a]
+-   samtools v1.12 [@Li2009]
+-   minimap2 v2.17 [@LiLi2017]
+-   bwa-mem2 v2.2.1 [@VasimuddinMd2019]
+-   bedtools v2.29.2 [@Quinlan2010]
+-   seqkit v0.13.2 [@Shen2016]
+-   rcorrector v1.0.4
+-   trim-galore v0.6.6 [cite](https://github.com/FelixKrueger/TrimGalore) (Cutadapt + FastQC wrapper)
+-   busco v5.1.1 [@Seppey2019]
+-   assembly_stats v0.1.4 [cite](https://doi.org/10.5281/zenodo.3968774)
+-   ragtag v1.1.1 [@Alonge2019]
+-   pilon v1.24 [@Walker2014]
+-   TETools DFAM container v1.3.1
+-   RepeatModeler v2.0.1 [@Flynn2020]
+-   cd-hit v4.8.1 [@Fu2012]
+-   RepeatMasker v4.1.2-p1 (Smit, AFA, Hubley, R. RepeatModeler Open-1.0. 2008-2015 <http://www.repeatmasker.org>) [@Smit2013]
+
+------------------------------------------------------------------------
+
+# Results and discussion
+
+Trees in forest *A* grew taller than those in forest *B* (mean height: `r mean(25, 31, 28)` versus `r mean(13, 19, 16)` m).
+
+And many more cool results that get updated dynamically, e.g. see Table \@ref(tab:Table-mtcars) and Fig.
+\@ref(fig:scatterplot).
+Note Tables and Figures are **cross-linked and numbered automatically**.
+They could also appear in the middle of the document, not necessarily at the end.
+
+See also Fig.
+\@ref(fig:SupplFig) and Table \@ref(tab:SupplTable) in the Supplementary Material.
+
+
+
+
+```{r}
+# asm_show <- c(
+#   "coruscus_GCA017311375", 
+#   "gallo_GCA900618805",
+#   "edu_GCA905397895",
+#   "eduam_GCA019925415",
+#   "gallo_v6",
+#   "gallo_v7",
+#   "edu_v6", 
+#   "edu_v7",
+#   "tros_v6", 
+#   "tros_v7"
+# )
+```
+
+## Assembly statistics
+
+```{r, include=FALSE}
+source("../scripts/asm_stats_prep.R", local = knitr::knit_global())
+```
+
+
+```{r table_asm_stats}
+asm_stats_table %>%
+  kable(.)
+```
+
+## BUSCO scores
+
+```{r load_busco}
+busco <- read_tsv("data/busco_summary.tsv", col_types = cols()) %>% 
+  mutate(asm = str_replace(asm, "_metazoa_odb10|_mollusca_odb10", "")) %>% # clean asm names
+  mutate(cat = fct_relevel(cat, "M", "F", "CD", "CS")) %>%
+  mutate(asm = fct_relevel(asm, asm_show) %>% 
+           fct_rev()) %>% 
+  group_by(asm, db) %>% 
+  mutate(proportion = N/cur_data()$N[cur_data()$cat=="T"]) %>% 
+  mutate(pct_fmt = paste(format(round(proportion*100, digits = 2)), "%"))
+```
+
+```{r full_figure_mollusca, fig.width=10, fig.height=4}
+busco %>% 
+  filter(db == "mollusca_odb10") %>% 
+  filter(cat %in% c("CS", "CD", "F", "M")) %>%
+  filter(asm %in% asm_show) %>% 
+  ggplot(., aes(x = N, y = asm, fill = cat)) + 
+    geom_bar(position = "fill", stat = "identity", width = 0.9) +
+    scale_fill_manual(values = c("#D55E00", "#E69F00", "#56B4E9", "#009E73"),
+                      guide = guide_legend(reverse=T),
+                      name = "categories", 
+                      labels = c("Missing", "Fragmented", "Complete duplicated", "Complete single copy")) +
+    scale_x_continuous(expand=c(0,0), labels = scales::percent, breaks = c(0,0.2,0.4,0.6,0.8,1)) + 
+    scale_y_discrete(expand=c(0,0)) +
+    geom_text(aes(label = N), position = position_fill(vjust = .5), size = 3) +
+    labs(x = "BUSCO percentage", y = NULL, title = "BUSCO scores Mollusca_odb10 (5295 genes)") +
+    theme_minimal() +
+    theme(axis.ticks.x = element_line(),
+          panel.grid = element_blank(),
+          legend.position = "bottom",
+          plot.margin = margin(t=5,r=15,b=0,l=5))
+```
+
+```{r full_figure_metazoa, fig.width=10, fig.height=4}
+busco %>% 
+  filter(db == "metazoa_odb10") %>% 
+  filter(cat %in% c("CS", "CD", "F", "M")) %>%
+  filter(asm %in% asm_show) %>% 
+  ggplot(., aes(x = N, y = asm, fill = cat)) + 
+    geom_bar(position = "fill", stat = "identity") +
+    scale_fill_manual(values = c("#D55E00", "#E69F00", "#56B4E9", "#009E73"),
+                      guide = guide_legend(reverse=T),
+                      name = "categories", 
+                      labels = c("Missing", "Fragmented", "Complete duplicated", "Complete single copy")) +
+    scale_x_continuous(expand=c(0,0), labels = scales::percent, breaks = c(0,0.2,0.4,0.6,0.8,1)) + 
+    scale_y_discrete(expand=c(0,0)) +
+    geom_text(aes(label = N), position = position_fill(vjust = .5), size = 3) +
+    labs(x = "BUSCO percentage", y = NULL, title = "BUSCO scores Metazoa_odb10 (954 genes)") +
+    theme_minimal() +
+    theme(axis.ticks.x = element_line(),
+          panel.grid = element_blank(),
+          legend.position = "bottom",
+          plot.margin = margin(t=5,r=15,b=0,l=5))
+```
+
+# Conclusion
+
+Wrap up
+
+# Acknowledgement
+
+On the shoulders of giants.
+
+# References
+
+```{r write_citations, cache=FALSE, include=FALSE}
+#write.bibtex(file = "knitcitations.bib")
+```
+
+::: {#refs}
+:::
+
+\eleft
+
+\clearpage
+
+<!--# Tables below -->
+
+\listoftables
+
+\newpage
+
+```{r Table-Iris}
+kable(head(iris), caption = "A glimpse of the famous Iris dataset.", booktabs = TRUE)
+```
+
+\clearpage
+
+```{r Table-mtcars}
+kable(mtcars[10:16, ], caption = "Now a subset of mtcars dataset.", booktabs = TRUE)
+```
+
+\clearpage
+
+<!--# Figures below -->
+
+\listoffigures
+
+\newpage
+
+```{r scatterplot, fig.cap="Just my first figure with a very fantastic caption."}
+x <- rnorm(100)
+y <- jitter(x, 1000)
+plot(x, y)
+```
+
+\newpage
+
+\blandscape
+
+```{r Fig-landscape, fig.cap="Second figure in landscape format."}
+a <- sort(rnorm(100))
+b <- c(rep("Group Small", 35), rep("Group Big", 65))
+boxplot(a ~ b)
+```
+
+\elandscape
+
+\clearpage
+
+# SUPPLEMENTARY MATERIAL {.unnumbered}
+
+\beginsupplement
+
+# Other things we tried
+
+## Raw reads filtration
+
+Explain pipeline, it did not improve assembly -\> v2, v3
+
+\clearpage
+
+```{r SupplTable}
+kable(head(iris), caption = "A supplementary table.", booktabs = TRUE)
+```
+
+\clearpage
+
+```{r SupplFig, fig.cap="A Supplementary Figure."}
+x <- rnorm(100)
+y <- jitter(x, 1000)
+plot(x, y)
+```
+
+\newpage
+
+```{r sessioninfo, eval = FALSE}
+# set eval = FALSE if you don't want this info (useful for reproducibility) to appear 
+sessionInfo()
+# sessioninfo::session_info()
+```

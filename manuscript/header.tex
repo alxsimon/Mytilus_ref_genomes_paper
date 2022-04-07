@@ -1,0 +1,46 @@
+\usepackage{amsmath}
+
+% ---------- CHOOSE A FONT ----------
+
+\usepackage{fontspec}
+%\setmainfont{Fira Sans}
+\setmainfont{Verdana}
+
+\usepackage[english]{babel}							   % hyphenation etc for English
+
+% --------- MISC FORMATTING ---------
+%
+\usepackage{setspace}                % needed for doublespacing
+%\doublespacing                       % doublespaced line spacing
+\usepackage{graphicx}                % for importing graphics into figures
+\usepackage{float}                   % better control of figure placement
+\usepackage{hyperref}                % for clickable URLs and email addresses
+\usepackage{cleveref}
+\urlstyle{sf}                        % san-serif font for URLs
+\usepackage[margin=1.2in]{geometry}  % control page margins
+\usepackage[labelfont=bf]{caption}   % make caption labels boldface
+\usepackage[bottom]{footmisc}        % footnotes at bottom of page
+\setlength{\skip\footins}{10mm}      % obsessing about footnote spacing
+\setlength{\parskip}{1ex}            % space between paragraphs
+%\setlength{\parindent}{3em}	     % paragraph indentation
+\usepackage{authblk}                 % author and affiliation formatting
+\renewcommand\Affilfont{\small}
+\usepackage{booktabs}
+\usepackage{pdflscape}
+
+% Biblio
+\usepackage[style=apa,
+labeldate=year,
+isbn=false,
+eprint=false,
+date=year,
+url=false,
+backend=biber]{biblatex}
+\bibliography{references.bib}
+
+%-----------
+% Line numbers
+\usepackage{lineno}                  % add line numbers to margin
+\def\linenumberfont{\normalfont\footnotesize\sffamily} % line numbers
+\setlength\linenumbersep{9mm}                          % line numbers
+\linenumbers                                           % line numbers
