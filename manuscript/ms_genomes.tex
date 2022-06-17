@@ -311,28 +311,63 @@ Overall, we show that our assemblies are equivalent to the published ones in ter
 \end{figure}
 
 
-\subsection*{blob legends}
+\subsection*{Blobtoolkit}
 
-None-binned blob plot of base coverage in GM against GC proportion for scaffolds in assembly MgalMED\_v7. Scaffolds are coloured by phylum and binned at a resolution of 30 divisions on each axis. Coloured nones within each bin are sized in proportion to the sum of individual scaffold lengths on a square-root scale, ranging from 1,005 to 1,127,105,406. Histograms show the distribution of scaffold length sum along each axis.
+% blobs
+\begin{figure}
+	\includegraphics[width=\linewidth]{figures/btk_blob_MgalMED_v7}
+	\caption{None-binned blob plot of base coverage in GM against GC proportion for scaffolds in assembly MgalMED\_v7. Scaffolds are coloured by phylum and binned at a resolution of 30 divisions on each axis. Coloured nones within each bin are sized in proportion to the sum of individual scaffold lengths on a square-root scale, ranging from 1,005 to 1,127,105,406. Histograms show the distribution of scaffold length sum along each axis.}
+	\label{supfig:btk-blob-MgalMED}
+\end{figure}
 
-None-binned blob plot of base coverage in GM against GC proportion for scaffolds in assembly MeduEUS\_v7. Scaffolds are coloured by phylum and binned at a resolution of 30 divisions on each axis. Coloured nones within each bin are sized in proportion to the sum of individual scaffold lengths on a square-root scale, ranging from 987 to 487,517,891. Histograms show the distribution of scaffold length sum along each axis.
+\begin{figure}
+	\includegraphics[width=\linewidth]{figures/btk_blob_MgalMED_v7}
+	\caption{None-binned blob plot of base coverage in GM against GC proportion for scaffolds in assembly MeduEUS\_v7. Scaffolds are coloured by phylum and binned at a resolution of 30 divisions on each axis. Coloured nones within each bin are sized in proportion to the sum of individual scaffold lengths on a square-root scale, ranging from 987 to 487,517,891. Histograms show the distribution of scaffold length sum along each axis.}
+	\label{supfig:btk-blob-MeduEUS}
+\end{figure}
 
-None-binned blob plot of base coverage in GM against GC proportion for scaffolds in assembly MeduEUN\_v7. Scaffolds are coloured by phylum and binned at a resolution of 30 divisions on each axis. Coloured nones within each bin are sized in proportion to the sum of individual scaffold lengths on a square-root scale, ranging from 1,011 to 1,136,301,196. Histograms show the distribution of scaffold length sum along each axis.
+\begin{figure}
+	\includegraphics[width=\linewidth]{figures/btk_blob_MgalMED_v7}
+	\caption{None-binned blob plot of base coverage in GM against GC proportion for scaffolds in assembly MeduEUN\_v7. Scaffolds are coloured by phylum and binned at a resolution of 30 divisions on each axis. Coloured nones within each bin are sized in proportion to the sum of individual scaffold lengths on a square-root scale, ranging from 1,011 to 1,136,301,196. Histograms show the distribution of scaffold length sum along each axis.}
+	\label{supfig:btk-blob-MeduEUN}
+\end{figure}
 
-\subsection*{cumulative legends}
+% cumulative lengths
+\begin{figure}
+	\includegraphics[width=\linewidth]{figures/btk_cumulative_MgalMED_v7}
+	\caption{Cumulative scaffold length for assembly MgalMED\_v7. The grey line shows cumulative length for all scaffolds. Coloured lines show cumulative lengths of scaffolds assigned to each phylum using the bestsumorder taxrule.}
+	\label{supfig:btk-cumul-MgalMED}
+\end{figure}
 
-Cumulative scaffold length for assembly MgalMED\_v7. The grey line shows cumulative length for all scaffolds. Coloured lines show cumulative lengths of scaffolds assigned to each phylum using the bestsumorder taxrule.
+\begin{figure}
+	\includegraphics[width=\linewidth]{figures/btk_cumulative_MeduEUS_v7}
+	\caption{Cumulative scaffold length for assembly MeduEUS\_v7. The grey line shows cumulative length for all scaffolds. Coloured lines show cumulative lengths of scaffolds assigned to each phylum using the bestsumorder taxrule.}
+	\label{supfig:btk-cumul-MeduEUS}
+\end{figure}
 
-Cumulative scaffold length for assembly MeduEUS\_v7. The grey line shows cumulative length for all scaffolds. Coloured lines show cumulative lengths of scaffolds assigned to each phylum using the bestsumorder taxrule.
+\begin{figure}
+	\includegraphics[width=\linewidth]{figures/btk_cumulative_MeduEUN_v7}
+	\caption{Cumulative scaffold length for assembly MeduEUN\_v7. The grey line shows cumulative length for all scaffolds. Coloured lines show cumulative lengths of scaffolds assigned to each phylum using the bestsumorder taxrule.}
+	\label{supfig:btk-cumul-MeduEUN}
+\end{figure}
 
-Cumulative scaffold length for assembly MeduEUN\_v7. The grey line shows cumulative length for all scaffolds. Coloured lines show cumulative lengths of scaffolds assigned to each phylum using the bestsumorder taxrule.
+% snail plots
+\begin{figure}
+	\includegraphics[width=\linewidth]{figures/btk_snail_MgalMED_v7}
+	\caption{Snail plot summary of assembly statistics for assembly MgalMED\_v7. The main plot is divided into 1,000 size-ordered bins around the circumference with each bin representing 0.1\% of the 1,658,656,017 bp assembly. The distribution of scaffold lengths is shown in dark grey with the plot radius scaled to the longest scaffold present in the assembly (104,729,878 bp, shown in red). Orange and pale-orange arcs show the N50 and N90 scaffold lengths (71,952,646 and 16,011 bp), respectively. The pale grey spiral shows the cumulative scaffold count on a log scale with white scale lines showing successive orders of magnitude. The blue and pale-blue area around the outside of the plot shows the distribution of GC, AT and N percentages in the same bins as the inner plot. A summary of complete, fragmented, duplicated and missing BUSCO genes in the mollusca\_odb10 set is shown in the top right.}
+	\label{supfig:btk-snail-MgalMED}
+\end{figure}
 
-\subsection*{snailplot legends}
+\begin{figure}
+	\includegraphics[width=\linewidth]{figures/btk_snail_MeduEUS_v7}
+	\caption{Snail plot summary of assembly statistics for assembly MeduEUS\_v7. The main plot is divided into 1,000 size-ordered bins around the circumference with each bin representing 0.1\% of the 2,076,685,641 bp assembly. The distribution of scaffold lengths is shown in dark grey with the plot radius scaled to the longest scaffold present in the assembly (88,305,666 bp, shown in red). Orange and pale-orange arcs show the N50 and N90 scaffold lengths (228,263 and 10,773 bp), respectively. The pale grey spiral shows the cumulative scaffold count on a log scale with white scale lines showing successive orders of magnitude. The blue and pale-blue area around the outside of the plot shows the distribution of GC, AT and N percentages in the same bins as the inner plot. A summary of complete, fragmented, duplicated and missing BUSCO genes in the mollusca\_odb10 set is shown in the top right. }
+	\label{supfig:btk-snail-MeduEUS}
+\end{figure}
 
-Snail plot summary of assembly statistics for assembly MgalMED\_v7. The main plot is divided into 1,000 size-ordered bins around the circumference with each bin representing 0.1\% of the 1,658,656,017 bp assembly. The distribution of scaffold lengths is shown in dark grey with the plot radius scaled to the longest scaffold present in the assembly (104,729,878 bp, shown in red). Orange and pale-orange arcs show the N50 and N90 scaffold lengths (71,952,646 and 16,011 bp), respectively. The pale grey spiral shows the cumulative scaffold count on a log scale with white scale lines showing successive orders of magnitude. The blue and pale-blue area around the outside of the plot shows the distribution of GC, AT and N percentages in the same bins as the inner plot. A summary of complete, fragmented, duplicated and missing BUSCO genes in the mollusca\_odb10 set is shown in the top right.
-
-Snail plot summary of assembly statistics for assembly MeduEUS\_v7. The main plot is divided into 1,000 size-ordered bins around the circumference with each bin representing 0.1\% of the 2,076,685,641 bp assembly. The distribution of scaffold lengths is shown in dark grey with the plot radius scaled to the longest scaffold present in the assembly (88,305,666 bp, shown in red). Orange and pale-orange arcs show the N50 and N90 scaffold lengths (228,263 and 10,773 bp), respectively. The pale grey spiral shows the cumulative scaffold count on a log scale with white scale lines showing successive orders of magnitude. The blue and pale-blue area around the outside of the plot shows the distribution of GC, AT and N percentages in the same bins as the inner plot. A summary of complete, fragmented, duplicated and missing BUSCO genes in the mollusca\_odb10 set is shown in the top right. 
-
-Snail plot summary of assembly statistics for assembly MeduEUN\_v7. The main plot is divided into 1,000 size-ordered bins around the circumference with each bin representing 0.1\% of the 1,764,246,486 bp assembly. The distribution of scaffold lengths is shown in dark grey with the plot radius scaled to the longest scaffold present in the assembly (110,194,685 bp, shown in red). Orange and pale-orange arcs show the N50 and N90 scaffold lengths (77,102,752 and 30,649 bp), respectively. The pale grey spiral shows the cumulative scaffold count on a log scale with white scale lines showing successive orders of magnitude. The blue and pale-blue area around the outside of the plot shows the distribution of GC, AT and N percentages in the same bins as the inner plot. A summary of complete, fragmented, duplicated and missing BUSCO genes in the mollusca\_odb10 set is shown in the top right.
+\begin{figure}
+	\includegraphics[width=\linewidth]{figures/btk_snail_MeduEUN_v7}
+	\caption{Snail plot summary of assembly statistics for assembly MeduEUN\_v7. The main plot is divided into 1,000 size-ordered bins around the circumference with each bin representing 0.1\% of the 1,764,246,486 bp assembly. The distribution of scaffold lengths is shown in dark grey with the plot radius scaled to the longest scaffold present in the assembly (110,194,685 bp, shown in red). Orange and pale-orange arcs show the N50 and N90 scaffold lengths (77,102,752 and 30,649 bp), respectively. The pale grey spiral shows the cumulative scaffold count on a log scale with white scale lines showing successive orders of magnitude. The blue and pale-blue area around the outside of the plot shows the distribution of GC, AT and N percentages in the same bins as the inner plot. A summary of complete, fragmented, duplicated and missing BUSCO genes in the mollusca\_odb10 set is shown in the top right.}
+	\label{supfig:btk-snail-MeduEUN}
+\end{figure}
 
 \end{document}
