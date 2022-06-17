@@ -15,7 +15,6 @@
 
 %
 
-
 \begin{document}
 
 \maketitle
@@ -51,7 +50,12 @@ Within each species, evolutionary relevant lineages can be identified.
 Two lineages of \textit{M. galloprovincialis} can be identified, one Atlantic lineage and one Mediterranean lineage separated by a hybrid zone along the Almeria-Oran front \parencite{Quesada1995, Fraisse2016a, ElAyari2019}.
 Three lineages of \textit{M. edulis} can be identified: (i) an American lineage, (ii) a Southern European lineage, and (iii) a Northern European lineage \parencite{Fraisse2016a, Simon2020}.
 
-Therefore, need for diverse references among the complex...
+As an effort to diversify the genomic resources available for the \textit{Mytilus} species complex,
+we assembled and annotate the genomes of three lineages using the 10X chromium technology.
+While our assemblies were initially fragmented due to the high level of heterozygosity,
+we leveraged the existence of a chromosome scale assembly of a sister species to scaffold our assemblies against it.
+We obtained assemblies equivalent to published ones in term of completeness for three new lineages of the species complex using a low sequencing budget and publicly available data.
+The resources produced and the assembly pipeline are freely available for use by the community.
 
 \section{Methods}\label{methods}
 
@@ -121,7 +125,7 @@ We first used the \texttt{longranger} v2.2.2 align algorithm to map preprocessed
 \texttt{Minimap2} (v2.17; \cite{Li2017}) was used in the contig self-mapping step.
 We obtained the purged assemblies using the \texttt{get\_seqs} steps without restricting the purging to the end of contigs (without the \texttt{-e} option).
 
-We used the program \texttt{AGOUTI} (\url{https://github.com/svm-zhang/AGOUTI}; commit a7e65d6; \cite{Zhang2016a}) to improve scaffolding by using paired end RNA-seq reads.
+We used \texttt{AGOUTI} (\url{https://github.com/svm-zhang/AGOUTI}; commit a7e65d6; \cite{Zhang2016a}) to improve scaffolding by using paired end RNA-seq reads.
 For each species, a different set of published transcriptomes were used (Supplementary Table [[...]] for accessions).
 \texttt{AGOUTI} require a gene prediction as input in addition to RNA-seq reads.
 We used \texttt{Augustus} (v3.3.3; \cite{Stanke2008}) to produce an intermediate annotation for each assembly using the \textit{Caenorhabditis} model.
@@ -189,8 +193,8 @@ Assembly statistics were computed with the python module \texttt{assembly\_stats
 To assess the remaining level of duplication in the assemblies, we used the program \texttt{KAT} (v2.4.2; \cite{Mapleson2017}) to compare k-mer spectra from reads (preprocessed 10X) and from the assembly.
 
 Finally, gene completion analyses were carried out using \texttt{BUSCO} (v5.1.1; \cite{Manni2021}).
-We a Metazoan (\texttt{metazoa\_odb10.2021-02-24}) and a Molluscan database (\texttt{mollusca\_odb10.2020-08-05}) to assess and compare new and published assemblies.
-Published assemblies are:
+We used both a Metazoan (\texttt{metazoa\_odb10.2021-02-24}) and Molluscan (\texttt{mollusca\_odb10.2020-08-05}) database to assess and compare new and published assemblies.
+We compared our assemblies to the following published ones:
 \begin{itemize}
 	\item \textit{M. coruscus}, GCA\_017311375.1, \textcite{Yang2021};
 	\item \textit{M. galloprovincialis} from the Altantic lineage, GCA\_900618805.1, \textcite{Gerdol2020};
@@ -249,17 +253,27 @@ Species tree was inferred using the MSA method of \texttt{Orthofinder} \parencit
 
 \section{Results and discussion}
 
+The pre-assembly k-mer analysis carried out using Genomescope (using 21-mers) showed that, as expected, the genomes were highly heterozygous with values going from 3.49 to 8.77~\% (\cref{fig:genomescope}).
+Genomescope provide a bad fit and estimation in the case of the MeduEUS data due to a reduced coverage of the genome in that case, compared to the two other assemblies.
 
+Highly heterozygous genomes brings the risk of having a large number of duplicate contigs due to the separate assembly of the two alleles from a same locus.
+For this reason, we used the \texttt{purge\_dups} pipeline to try removing a maximum of such bias.
+This procedure reduced the number of complete duplicated genes in all assemblies (\cref{supfig:busco}, v1 to v4).
 
-
-\subsection{Assembly statistics}
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{figures/Fig1_genomescope.pdf}
+	\caption{Genomescope}
+	\label{fig:genomescope}
+\end{figure}
 
 % Table 1
 \begin{landscape}
 	\include{figures/Tab1_asm_stats.tex}
 \end{landscape}
 
-\subsection{BUSCO scores}
+
+To assess the completeness of our assemblies, we compared them to four \textit{Mytilus} published assemblies on the basis of a Metazoan and a Molluscan set of single copy orthologous genes using BUSCO (\cref{fig:busco}).
+Overall, we show that our assemblies are equivalent to the published ones in terms of completeness.
 
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{figures/Fig2_busco.pdf}
@@ -270,11 +284,10 @@ Species tree was inferred using the MSA method of \texttt{Orthofinder} \parencit
 
 %\includegraphics{figures/full_figure_metazoa-1.pdf}
 
-\section{Conclusion}\label{conclusion}
+%\section{Conclusion}\label{conclusion}
 
 
-
-\section{Acknowledgement}
+\section*{Acknowledgements}
 
 
 % References
@@ -282,8 +295,19 @@ Species tree was inferred using the MSA method of \texttt{Orthofinder} \parencit
 
 
 % Add supplementary here
+\newpage
 \appendix
+\setcounter{table}{0}
+\renewcommand{\thetable}{S\arabic{table}}
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\section*{Supplementary Information}
 
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{figures/supfig_busco.pdf}
+	\caption{Busco scores}
+	\label{supfig:busco}
+\end{figure}
 
 
 
