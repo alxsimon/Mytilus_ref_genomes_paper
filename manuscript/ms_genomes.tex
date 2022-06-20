@@ -108,7 +108,7 @@ Libraries were subsequently sequenced on an Illumina NovaSeq 6000 with an S4 flo
 We preprocessed 10X reads using the following pipeline for use in several algorithms (\cref{draft_asm}).
 We first removed duplicate reads using \texttt{Nubeam-dedup} (\cite{Dai2020}; commit 25dd385).
 We then used \texttt{proc10xG} (\url{https://github.com/ucdavis-bioinformatics/proc10xG}; commit 7afbfcf) to split the reads from their 10X barcodes for further processing.
-We used a custom filtering step designed to remove under- and over-represented barcodes and their associated reads from the data (\texttt{filter\_barcodes.R} script, see \cite{Bary\&Gagnaire??}).
+We used a custom filtering step designed to remove under- and over-represented barcodes and their associated reads from the data (\cref{supfig:preproc_MgalMED,supfig:preproc_MeduEUS,supfig:preproc_MeduEUN}, \texttt{filter\_barcodes.R} script, see \cite{Bary\&Gagnaire??}).
 [[Add supfigs of filter\_barcodes]].
 Reads were additionally filtered with \texttt{fastp} (v0.20.1; \cite{Chen2018}) with the main objective to remove poly-G tails created by the Illumina Novaseq sequencing technology.
 We obtained at this point reads equivalent to a short-read sequencing run, usable in some parts of the assembly and quality control pipeline.
@@ -186,7 +186,7 @@ and JAKGDH000000000 for MeduEUN.
 \subsection{Quality assessments and comparisons}
 
 Preprocessed 10X reads (\cref{preproc}) were used to first estimate estimate genome size and heterozygosities of the three individuals.
-We used the reference free k-mer based method \texttt{genomescope} (\url{https://github.com/tbenavi1/genomescope2.0}; commit 5034ed4; \cite{Ranallo-Benavidez2020}) and the fork of the \texttt{KMC} k-mer  counting program (\url{https://github.com/tbenavi1/KMC}; commit 1df71f6).
+We used the reference free k-mer based method \texttt{GenomeScope} (\url{https://github.com/tbenavi1/genomescope2.0}; commit 5034ed4; \cite{Ranallo-Benavidez2020}) and the fork of the \texttt{KMC} k-mer  counting program (\url{https://github.com/tbenavi1/KMC}; commit 1df71f6).
 
 Assembly statistics were computed with the python module \texttt{assembly\_stats} (v0.1.4; \cite{Trizna2020}).
 
@@ -253,8 +253,8 @@ Species tree was inferred using the MSA method of \texttt{Orthofinder} \parencit
 
 \section{Results and discussion}
 
-The pre-assembly k-mer analysis carried out using Genomescope (using 21-mers) showed that, as expected, the genomes were highly heterozygous with values going from 3.49 to 8.77~\% (\cref{fig:genomescope}).
-Genomescope provide a bad fit and estimation in the case of the MeduEUS data due to a reduced coverage of the genome in that case, compared to the two other assemblies.
+The pre-assembly k-mer analysis carried out using GenomeScope (using 21-mers) showed that, as expected, the genomes were highly heterozygous with values going from 3.49 to 8.77~\% (\cref{fig:genomescope}).
+GenomeScope provide a bad fit and estimation in the case of the MeduEUS data due to a reduced coverage of the genome in that case, compared to the two other assemblies.
 
 Highly heterozygous genomes brings the risk of having a large number of duplicate contigs due to the separate assembly of the two alleles from a same locus.
 For this reason, we used the \texttt{purge\_dups} pipeline to try removing a maximum of such bias.
@@ -262,7 +262,11 @@ This procedure reduced the number of complete duplicated genes in all assemblies
 
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{figures/Fig1_genomescope.pdf}
-	\caption{Genomescope}
+	\caption{k-mer profile plots computed with 21-mers using GenomeScope.
+		Coverage histogram of the k-mers in blue.
+		Lines represent the fit of the GenomeScope models.
+		len: inferred genome length; uniq: percentage of the genome that is unique, aa: overall homozigosity; ab: overall heterozygosity; kcov: mean k-mer coverage for heterozygous bases; err: reads error rate; dup: average rate of read duplication; k: k-mer size; p: ploidy.
+	}
 	\label{fig:genomescope}
 \end{figure}
 
@@ -304,6 +308,8 @@ Overall, we show that our assemblies are equivalent to the published ones in ter
 \renewcommand{\thefigure}{S\arabic{figure}}
 \section*{Supplementary Information}
 
+\subsection*{Tables}
+
 \begin{table}[h]
 	\caption{Steps carried out for each version of assembly}
 	\label{suptab:versions}
@@ -325,9 +331,32 @@ Overall, we show that our assemblies are equivalent to the published ones in ter
 \end{table}
 \vspace{3em}
 
+\subsection*{Figures}
+% preproc barcodes
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{figures/MgalMED_preproc_barcode_filt.pdf}
+	\caption{Histogram of read pairs identified for each 10X barcode for MgalMED.
+		As part of preprocessing step, barcodes for which too few or too many read pairs are associated with each unique barcode are removed from the dataset (red regions).}
+	\label{supfig:preproc_MgalMED}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{figures/MeduEUS_preproc_barcode_filt.pdf}
+	\caption{Histogram of read pairs identified for each 10X barcode for MeduEUS.
+		As part of preprocessing step, barcodes for which too few or too many read pairs are associated with each unique barcode are removed from the dataset (red regions).}
+	\label{supfig:preproc_MeduEUS}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{figures/MeduEUN_preproc_barcode_filt.pdf}
+	\caption{Histogram of read pairs identified for each 10X barcode for MeduEUN.
+	As part of preprocessing step, barcodes for which too few or too many read pairs are associated with each unique barcode are removed from the dataset (red regions).}
+	\label{supfig:preproc_MeduEUN}
+\end{figure}
+
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{figures/supfig_busco.pdf}
-	\caption{Busco scores on the metazoa\_odb10 (left panels) and mollusca\_odb10 (right panels) databases for each assembly MgalMED, MeduEUS and MeduEUN (top to bottom panels) across several versions (v1, v4, v5, v6, v7).}
+	\caption{Busco scores on the metazoa\_odb10 (left panels) and mollusca\_odb10 (right panels) databases for each assembly MgalMED, MeduEUS and MeduEUN (top to bottom panels) across several assembly versions (v1, v4, v5, v6, v7).}
 	\label{supfig:busco}
 \end{figure}
 
