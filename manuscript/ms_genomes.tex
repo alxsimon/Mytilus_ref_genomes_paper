@@ -87,7 +87,7 @@ Whole mussels were placed in 50 mL falcon tubes containing 25 ml of TNES-Urea so
 After this period of pre-treatment at ambient temperature, proteinase K was added at a final concentration of 150 \(\mu\)g/mL and the solution was incubated overnight at 56°C.
 
 High Molecular weight genomic DNA was extracted following \textcite{Nakayama1994}.
-We used a 15 mL Phase Lock Gel Heavy extraction with 3 steps of phenol/chloroform/isoamylalcool (25/24/1) Tris pH 8,1 followed by 2 chloroform extractions.
+We used a 15 mL Phase Lock Gel Heavy extraction with 3 steps of phenol / chloroform / isoamylalcool (25/24/1) Tris pH 8,1 followed by 2 chloroform extractions.
 After the last extraction, the aqueous supernatant was precipitated with 2 volumes of 100\% EtOH and the pellet was hooked from the solution with a sterile glass Pasteur pipette.
 The pellet was rinsed several times in 80\% EtOH before being dried at room temperature.
 
@@ -108,8 +108,7 @@ Libraries were subsequently sequenced on an Illumina NovaSeq 6000 with an S4 flo
 We preprocessed 10X reads using the following pipeline for use in several algorithms (\cref{draft_asm}).
 We first removed duplicate reads using \texttt{Nubeam-dedup} (\cite{Dai2020}; commit 25dd385).
 We then used \texttt{proc10xG} (\url{https://github.com/ucdavis-bioinformatics/proc10xG}; commit 7afbfcf) to split the reads from their 10X barcodes for further processing.
-We used a custom filtering step designed to remove under- and over-represented barcodes and their associated reads from the data (\cref{supfig:preproc_MgalMED,supfig:preproc_MeduEUS,supfig:preproc_MeduEUN}, \texttt{filter\_barcodes.R} script, see \cite{Bary\&Gagnaire??}).
-[[Add supfigs of filter\_barcodes]].
+We used a custom filtering step designed to remove under- and over-repre\-sented barcodes and their associated reads from the data (\cref{supfig:preproc_MgalMED,supfig:preproc_MeduEUS,supfig:preproc_MeduEUN}, \texttt{filter\_barcodes.R} script, see \cite{Bary\&Gagnaire??}).
 Reads were additionally filtered with \texttt{fastp} (v0.20.1; \cite{Chen2018}) with the main objective to remove poly-G tails created by the Illumina Novaseq sequencing technology.
 We obtained at this point reads equivalent to a short-read sequencing run, usable in some parts of the assembly and quality control pipeline.
 Additionally, to obtain reads compatible to 10X genomics tools, we filtered and reassembled reads with their 10X barcodes in \texttt{proc10xG} using the \texttt{filter\_10xReads.py} and \texttt{regen\_10xReads.py} scripts.
@@ -129,12 +128,12 @@ We used \texttt{AGOUTI} (\url{https://github.com/svm-zhang/AGOUTI}; commit a7e65
 For each species, a different set of published transcriptomes were used (Supplementary Table [[...]] for accessions).
 \texttt{AGOUTI} require a gene prediction as input in addition to RNA-seq reads.
 We used \texttt{Augustus} (v3.3.3; \cite{Stanke2008}) to produce an intermediate annotation for each assembly using the \textit{Caenorhabditis} model.
-RNA-seq reads were first cleaned using \texttt{rcorrector} (v1.0.4; \cite{Song2015}) and \texttt{trimgalore} (v0.6.6; \url{https://www.bioinformatics.babraham.ac.uk/projects/trim_galore}; \texttt{--quality 20 --stringency 1 -e 0.1 --length 70}).
+RNA-seq reads were first cleaned using \texttt{rcorrector} (v1.0.4; \cite{Song2015}) and \texttt{trimgalore} (v0.6.6; \url{https://www.bioinformatics.babraham.ac.uk/projects/trim_galore}; \texttt{--quality 20 \\--stringency 1 -e 0.1 --length 70}).
 RNA-seq reads were mapped independently using \texttt{bwa-mem2} (v2.2.1; \cite{VasimuddinMd2019}), and then merged as a common bam file for each assembly with \texttt{samtools} (v1.12; \cite{Li2009}).
-Finally, the \texttt{AGOUTI} scaffolding pipeline was run using the gene prediction and mapped RNA-seq reads (-minMQ 20 -maxFracMM 0.05; using \texttt{python} v2.7.15 and \texttt{samtools} v1.10 for compatibility).
+Finally, the \texttt{AGOUTI} scaffolding pipeline was run using the gene prediction and mapped RNA-seq reads (\texttt{-minMQ 20 -maxFracMM 0.05}; using \texttt{python} v2.7.15 and \texttt{samtools} v1.10 for compatibility).
 
-As a last step, we ran \textit{Blobtoolkit} (v2.4.0; \cite{Challis2020}) on the three assemblies to evaluate quality and potential contamination levels.
-We used a custom script (\texttt{btk\_conta\_extraction.py}) to filter the assembly contigs based on the taxids found by the \textit{Blobtoolkit} pipeline to remove the most obvious contaminations.
+As a last step, we ran \texttt{Blobtoolkit} (v2.4.0; \cite{Challis2020}) on the three assemblies to evaluate quality and potential contamination levels.
+We used a custom script (\texttt{btk\_conta\_extraction.py}) to filter the assembly contigs based on the taxids found by the \texttt{Blobtoolkit} pipeline to remove the most obvious contaminations.
 Contigs matching taxids associated with viruses, bacteria and non-mollusca eukaryotes were removed.
 More specifically contigs for were removed for virus contamination if they presented a hit percentage of more than 10~\% of their length.
 Contigs were removed for eukaryote contamination only when presenting only hits to taxa outside Mollusca on more than 10~\% of their length.
@@ -216,8 +215,8 @@ Atlantic \textit{M. galloprovincialis} (GCA\_900618805.1; \textcite{Gerdol2020})
 and American \textit{M. edulis} (GCA\_019925275.1; annotation as personal communication of Tiago Hori, PEIMSO).
 For GCA\_019925275.1, protein sequences where retrieve from the fasta and gff files using the python module gff3tool (v2.1.0).
 
-We used \texttt{Orthofinder} (v2.5.2; \cite{Emms2015, Emms2019}) to find orthogroups and orthologue genes.
-Species tree was inferred using the MSA method of \texttt{Orthofinder} \parencite{Emms2018} and \texttt{IQTREE} (v2.2.0\_beta; \cite{Minh2020}) tree inference.
+We used \texttt{OrthoFinder} (v2.5.2; \cite{Emms2015, Emms2019}) to find orthogroups and orthologue genes.
+Species tree was inferred using the MSA method of \texttt{OrthoFinder} \parencite{Emms2018} and \texttt{IQTREE} (v2.2.0\_beta; \cite{Minh2020}) tree inference.
 
 %\begin{itemize}
 %	\item Supernova v2.1.1 \href{https://doi.org/10.1101/gr.214874.116}{cite}
@@ -264,6 +263,7 @@ GenomeScope provide a bad fit and estimation in the case of the MeduEUS data due
 Highly heterozygous genomes brings the risk of having a large number of duplicate contigs due to the separate assembly of the two alleles from a same locus.
 For this reason, we used the \texttt{purge\_dups} pipeline to try removing a maximum of such bias.
 This procedure reduced the number of complete duplicated genes in all assemblies (\cref{supfig:busco}, v1 to v4).
+Overall, the compared \texttt{KAT} spectra analyses show that the assembly steps reduced the amount of duplication in all assemblies (\cref{supfig:kat_spectra}).
 
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{figures/Fig1_genomescope.pdf}
@@ -292,8 +292,16 @@ Overall, we show that our assemblies are equivalent to the published ones in ter
 
 
 The species tree (\cref{fig:tree}) shows that the assemblies and the published genomes and transcriptomes are clustering as expected.
-\texttt{Orthofinder} \comment{provides}{provide the orthogroups somewhere} a resource of single-copy orthogroups across a large part the \textit{Mytilus} species complex.
+\texttt{OrthoFinder} \comment{provides}{provide the orthogroups somewhere} a resource of single-copy orthogroups across a large part the \textit{Mytilus} species complex.
 
+
+OrthoFinder results:
+OrthoFinder assigned 499004 genes (91.9\% of total) to 50543 orthogroups. Fifty percent of all 
+genes were in orthogroups with 13 or more genes (G50 was 13) and were contained in the largest
+11982 orthogroups (O50 was 11982). There were 1852 orthogroups with all species present and 
+173 of these consisted entirely of single-copy genes.
+
+Species tree using 1300 orthogroups with minimum of 81.8\% of species having single-copy genes in any orthogroup (value automatically selected by \texttt{OrthoFinder}).
 
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{figures/Fig3_tree.pdf}
@@ -306,9 +314,16 @@ The species tree (\cref{fig:tree}) shows that the assemblies and the published g
 \end{figure}
 
 
-%\includegraphics{figures/full_figure_metazoa-1.pdf}
 
 %\section{Conclusion}\label{conclusion}
+
+\section*{Data availability}
+
+Raw reads are available under BioProject PRJNA785550.
+Assemblies are available under accessions JAKGDF000000000 (MgalMED), JAKGDG000000000 (MeduEUS), and JAKGDH000000000 (MeduEUN).
+Annotations are available under the Zenodo archive [XXX].
+The assembly pipeline is available at \url{https://github.com/alxsimon/assembly_10x}.
+The OrthoFinder pipeline is available at [XXX].
 
 
 \section*{Acknowledgements}
@@ -357,24 +372,31 @@ AS was supported by the ANR grant [XXX] and by the National Institute of General
 \subsection*{Figures}
 % preproc barcodes
 \begin{figure}[h]
-	\includegraphics[width=\linewidth]{figures/MgalMED_preproc_barcode_filt.pdf}
+	\includegraphics[width=\linewidth]{figures/supfig_MgalMED_preproc_barcode_filt.pdf}
 	\caption{Histogram of read pairs identified for each 10X barcode for MgalMED.
 		As part of preprocessing step, barcodes for which too few or too many read pairs are associated with each unique barcode are removed from the dataset (red regions).}
 	\label{supfig:preproc_MgalMED}
 \end{figure}
 
 \begin{figure}[h]
-	\includegraphics[width=\linewidth]{figures/MeduEUS_preproc_barcode_filt.pdf}
+	\includegraphics[width=\linewidth]{figures/supfig_MeduEUS_preproc_barcode_filt.pdf}
 	\caption{Histogram of read pairs identified for each 10X barcode for MeduEUS.
 		As part of preprocessing step, barcodes for which too few or too many read pairs are associated with each unique barcode are removed from the dataset (red regions).}
 	\label{supfig:preproc_MeduEUS}
 \end{figure}
 
 \begin{figure}[h]
-	\includegraphics[width=\linewidth]{figures/MeduEUN_preproc_barcode_filt.pdf}
+	\includegraphics[width=\linewidth]{figures/supfig_MeduEUN_preproc_barcode_filt.pdf}
 	\caption{Histogram of read pairs identified for each 10X barcode for MeduEUN.
 	As part of preprocessing step, barcodes for which too few or too many read pairs are associated with each unique barcode are removed from the dataset (red regions).}
 	\label{supfig:preproc_MeduEUN}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{figures/supfig_kat_spectra.pdf}
+	\caption{KAT comparison of k-mer spectra between assembly and preprocessed reads.
+	Results are compared between the initial assembly (v1, left column) and the final assembly (v7, right column) for each sample MgalMED, MeduEUS and MeduEUN (from top to bottom).}
+	\label{supfig:kat_spectra}
 \end{figure}
 
 \begin{figure}[h]
