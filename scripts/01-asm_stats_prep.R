@@ -43,10 +43,11 @@ Assembly statistics comparisons. C for contigs and S for scaffolds.
 print(xtable(asm_stats_table,
 						 caption = tab_caption,
 						 label = "tab:asm_stats",
-						 digits = c(0,0,0,0,0,0,0,0,1,0,0,0)),
+						 digits = c(0,0,-2,-2,-2,0,0,-2,1,-2,0,-2)),
 	booktabs = TRUE,
 	caption.placement = "top",
 	include.rownames = FALSE,
-	scalebox = 0.7,
+	scalebox = 0.8,
+	math.style.exponents = TRUE,
 	file = "manuscript/figures/Tab1_asm_stats.tex"
 )

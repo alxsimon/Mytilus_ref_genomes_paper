@@ -125,7 +125,7 @@ We first used the \texttt{longranger} v2.2.2 align algorithm to map preprocessed
 We obtained the purged assemblies using the \texttt{get\_seqs} steps without restricting the purging to the end of contigs (without the \texttt{-e} option).
 
 We used \texttt{AGOUTI} (\url{https://github.com/svm-zhang/AGOUTI}; commit a7e65d6; \cite{Zhang2016a}) to improve scaffolding by using paired end RNA-seq reads.
-For each species, a different set of published transcriptomes were used (Supplementary Table [[...]] for accessions).
+For each species, a different set of published transcriptomes were used (See Supplementary File 1 for accession numbers).
 \texttt{AGOUTI} require a gene prediction as input in addition to RNA-seq reads.
 We used \texttt{Augustus} (v3.3.3; \cite{Stanke2008}) to produce an intermediate annotation for each assembly using the \textit{Caenorhabditis} model.
 RNA-seq reads were first cleaned using \texttt{rcorrector} (v1.0.4; \cite{Song2015}) and \texttt{trimgalore} (v0.6.6; \url{https://www.bioinformatics.babraham.ac.uk/projects/trim_galore}; \texttt{--quality 20 \\--stringency 1 -e 0.1 --length 70}).
@@ -163,12 +163,11 @@ Finally, soft repeat masking was performed on the assemblies with \texttt{Repeat
 
 \subsection{Annotation}
 
-To obtain an annotation for each assembly, we used both database and RNA-seq information.
-We used \texttt{Braker2} (v2.1.6; \cite{Bruna2021}) as an initial step, using both a protein database and RNA-seq reads (preprocessed in \cref{draft_asm}).
+We used \texttt{Braker2} (v2.1.6; \cite{Bruna2021}) as to obtain structural annotations, using both a protein database and RNA-seq reads (preprocessed in \cref{draft_asm}).
 To build the protein database, we used all \textit{Mollusca} proteins (taxid 6447) from OrthoDB (v10.1; \cite{Kriventseva2019}).
 To provide gene presence hints, we mapped all RNA-seq reads for each species using \texttt{HISAT2} (v2.2.1; \cite{Kim2019}).
 
-We used the \texttt{Mantis} pipeline (\url{https://github.com/PedroMTQ/mantis}; commit c6cb597; \cite{Queiros2021}) to obtain consensus annotations of genes based on multiple databases.
+We used the \texttt{Mantis} pipeline (\url{https://github.com/PedroMTQ/mantis}; commit c6cb597; \cite{Queiros2021}) to obtain consensus functional annotations of genes based on multiple databases.
 Protein sequences for each assembly were built from the \texttt{Braker2} annotation using the \texttt{python} module \texttt{gff3tool} (v2).
 
 \subsection{NCBI submission}
@@ -215,8 +214,8 @@ Atlantic \textit{M. galloprovincialis} (GCA\_900618805.1; \textcite{Gerdol2020})
 and American \textit{M. edulis} (GCA\_019925275.1; annotation as personal communication of Tiago Hori, PEIMSO).
 For GCA\_019925275.1, protein sequences where retrieve from the fasta and gff files using the python module gff3tool (v2.1.0).
 
-We used \texttt{OrthoFinder} (v2.5.2; \cite{Emms2015, Emms2019}) to find orthogroups and orthologue genes.
-Species tree was inferred using the MSA method of \texttt{OrthoFinder} \parencite{Emms2018} and \texttt{IQTREE} (v2.2.0\_beta; \cite{Minh2020}) tree inference.
+We used \texttt{OrthoFinder} (v2.5.4; \cite{Emms2015, Emms2019}) to find orthogroups and orthologue genes.
+Species tree was inferred using the MSA method of \texttt{OrthoFinder} \parencite{Emms2018} using the \texttt{MAFFT} aligner (v7.505; \cite{Katoh2013}), the \texttt{STRIDE} species tree rooting algorithm \parencite{Emms2017} and the \texttt{FastTree} software for tree inference (v2.1.11; \cite{Price2009}).
 
 %\begin{itemize}
 %	\item Supernova v2.1.1 \href{https://doi.org/10.1101/gr.214874.116}{cite}
@@ -252,13 +251,16 @@ Species tree was inferred using the MSA method of \texttt{OrthoFinder} \parencit
 
 \section{Results and discussion}
 
+
+\subsection{Assembly results}
+
 We introduce here newly assembled genomes from three lineages of the \textit{Mytilus} species complex.
-With a limited budget of $\sim$3000€ per genome, we managed to produce draft genomes of enough quality to be useful
+With a limited budget of $\sim3000$€ per genome, we managed to produce draft genomes of enough quality to be useful
 in applications such as population genomics and genetics.
 The method of 10X chromium pseudo-long reads combined with scaffolding using published data provided a quality comparable to published assemblies for \textit{Mytilus} species.
 
-The pre-assembly k-mer analysis carried out using GenomeScope (using 21-mers) showed that, as expected, the genomes were highly heterozygous with values going from 3.49 to 8.77~\% (\cref{fig:genomescope}).
-GenomeScope provide a bad fit and estimation in the case of the MeduEUS data due to a reduced coverage of the genome in that case, compared to the two other assemblies.
+The pre-assembly k-mer analysis carried out using GenomeScope (using 21-mers) showed that, as expected, the genomes were highly heterozygous with values going from $3.49$ to $8.77$~\% (\cref{fig:genomescope}).
+For the MeduEUS data, GenomeScope provides a fit of bad quality and an estimation probably off due to a reduced slightly lower sequencing depth compared to the two other assemblies. In that case, the heterozygous peak was not identifiable.
 
 Highly heterozygous genomes brings the risk of having a large number of duplicate contigs due to the separate assembly of the two alleles from a same locus.
 For this reason, we used the \texttt{purge\_dups} pipeline to try removing a maximum of such bias.
@@ -275,6 +277,10 @@ Overall, the compared \texttt{KAT} spectra analyses show that the assembly steps
 	\label{fig:genomescope}
 \end{figure}
 
+Stats:
+GC contents: 32.1\%, 34.6\%, 32.1\%
+
+
 % Table 1
 \begin{landscape}
 	\include{figures/Tab1_asm_stats.tex}
@@ -290,22 +296,34 @@ Overall, we show that our assemblies are equivalent to the published ones in ter
 	\label{fig:busco}
 \end{figure}
 
+The MeduEUS assembly suffered from an increased level of contamination compared to the other two assemblies.
+Despite a broad contaminant filtering step, the Busco blob analysis (\cref{supfig:btk-blob-MeduEUS})
+shows a second GC content peak centered around 40\% (above the ~32\% peaks of this and other genomes).
 
-The species tree (\cref{fig:tree}) shows that the assemblies and the published genomes and transcriptomes are clustering as expected.
-\texttt{OrthoFinder} \comment{provides}{provide the orthogroups somewhere} a resource of single-copy orthogroups across a large part the \textit{Mytilus} species complex.
+\subsection{Repeat contents}
 
+More than half of each genome was identified as repeats and masked by \texttt{RepeatMasker}.
+Repeats are estimated to amount to 57.22, 61.10 and 55.53\% of the bases of MgalMED, MeduEUS and MeduEUN assemblies respectively.
+The majority of repeats are unclassified, followed by retroelements with a balanced contribution of LINEs and LTR elements
+(detailed \texttt{RepeatMasker} results in \cref{suptab:repeats}).
 
-OrthoFinder results:
+\subsection{Annotations}
+
+[[Here goes annotation stats]]
+
+\subsection{Species tree}
+
 OrthoFinder assigned 499004 genes (91.9\% of total) to 50543 orthogroups. Fifty percent of all 
 genes were in orthogroups with 13 or more genes (G50 was 13) and were contained in the largest
 11982 orthogroups (O50 was 11982). There were 1852 orthogroups with all species present and 
 173 of these consisted entirely of single-copy genes.
 
-Species tree using 1300 orthogroups with minimum of 81.8\% of species having single-copy genes in any orthogroup (value automatically selected by \texttt{OrthoFinder}).
+The species tree was built using 1300 orthogroups with a minimum of 81.8\% of species having single-copy genes in any orthogroup (\cref{fig:tree}).
+It shows that the assemblies and the published genomes and transcriptomes are clustering as expected.
 
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{figures/Fig3_tree.pdf}
-	\caption{Species tree using 1300 orthogroups with minimum of 81.8\% of species having single-copy genes in any orthogroup.
+	\caption{Species tree using 1300 orthogroups with a minimum of 81.8\% of species having single-copy genes in any orthogroup.
 	Color coding -- dark blue: \textit{M. edulis} Europe, light blue: \textit{M. edulis} America,
 	red: \textit{M. galloprovincialis} Mediterranean Sea, yellow: \textit{M. galloprovincialis} Atlantic,
 	green: \textit{M. trossulus}, pink: \textit{M. coruscus}, gray: \textit{M. californianus}.
@@ -319,17 +337,18 @@ Species tree using 1300 orthogroups with minimum of 81.8\% of species having sin
 
 \section*{Data availability}
 
-Raw reads are available under BioProject PRJNA785550.
+Raw data are available under BioProject PRJNA785550.
 Assemblies are available under accessions JAKGDF000000000 (MgalMED), JAKGDG000000000 (MeduEUS), and JAKGDH000000000 (MeduEUN).
-Annotations are available under the Zenodo archive [XXX].
 The assembly pipeline is available at \url{https://github.com/alxsimon/assembly_10x}.
-The OrthoFinder pipeline is available at [XXX].
+Annotations and the OrthoFinder pipeline and results are available on the Zenodo archive [[XXX]].
 
 
 \section*{Acknowledgements}
 
-We thank [XXX].
-AS was supported by the ANR grant [XXX] and by the National Institute of General Medical Sciences of the National Institutes of Health (grants NIH R01 GM108779 and R35 GM136290 to Dr Graham Coop).
+We thank [[XXX]].
+We thank IFB core cluster for computational resources [[...]]
+We thank Tiago Horri for providing his annotation of the American \textit{Mytilus edulis} genome (GCA\_019925275.1).
+AS was supported by the ANR grant [[XXX]] and by the National Institute of General Medical Sciences of the National Institutes of Health (grants NIH R01 GM108779 and R35 GM136290 to Dr Graham Coop).
 
 
 % References
@@ -461,5 +480,9 @@ AS was supported by the ANR grant [XXX] and by the National Institute of General
 	\caption{Blobtoolkit snail plot summary of assembly statistics for assembly MeduEUN\_v7. The main plot is divided into 1,000 size-ordered bins around the circumference with each bin representing 0.1\% of the 1,764,246,486 bp assembly. The distribution of scaffold lengths is shown in dark gray with the plot radius scaled to the longest scaffold present in the assembly (110,194,685 bp, shown in red). Orange and pale-orange arcs show the N50 and N90 scaffold lengths (77,102,752 and 30,649 bp), respectively. The pale gray spiral shows the cumulative scaffold count on a log scale with white scale lines showing successive orders of magnitude. The blue and pale-blue area around the outside of the plot shows the distribution of GC, AT and N percentages in the same bins as the inner plot. A summary of complete, fragmented, duplicated and missing BUSCO genes in the mollusca\_odb10 set is shown in the top right.}
 	\label{supfig:btk-snail-MeduEUN}
 \end{figure}
+
+
+% Table contains discrepancies of the sums but this is what RepeatMasker outputs... So I don't know...
+\include{figures/Suptab_repeats.tex}
 
 \end{document}
