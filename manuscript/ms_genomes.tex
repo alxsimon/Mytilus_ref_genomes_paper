@@ -167,8 +167,11 @@ We used \texttt{Braker2} (v2.1.6; \cite{Bruna2021}) as to obtain structural anno
 To build the protein database, we used all \textit{Mollusca} proteins (taxid 6447) from OrthoDB (v10.1; \cite{Kriventseva2019}).
 To provide gene presence hints, we mapped all RNA-seq reads for each species using \texttt{HISAT2} (v2.2.1; \cite{Kim2019}).
 
-We used the \texttt{Mantis} pipeline (\url{https://github.com/PedroMTQ/mantis}; commit c6cb597; \cite{Queiros2021}) to obtain consensus functional annotations of genes based on multiple databases.
-Protein sequences for each assembly were built from the \texttt{Braker2} annotation using the \texttt{python} module \texttt{gff3tool} (v2).
+We used the \texttt{Mantis} pipeline (v1.5.5; \cite{Queiros2021}) to obtain consensus functional annotations of genes based on multiple databases.
+Protein sequences for each assembly were built from the structural annotations using the \texttt{python} module \texttt{gff3tool} (v2).
+\texttt{Mantis} was run with default parameters and databases:
+kofam \parencite{Aramaki2020}, NPFM \parencite{Lu2020}, eggNOG \parencite{Huerta-Cepas2019}, pfam \parencite{El-Gebali2019}, and tcdb \parencite{Saier2021}.
+
 
 \subsection{NCBI submission}
 
@@ -216,37 +219,6 @@ For GCA\_019925275.1, protein sequences where retrieve from the fasta and gff fi
 
 We used \texttt{OrthoFinder} (v2.5.4; \cite{Emms2015, Emms2019}) to find orthogroups and orthologue genes.
 Species tree was inferred using the MSA method of \texttt{OrthoFinder} \parencite{Emms2018} using the \texttt{MAFFT} aligner (v7.505; \cite{Katoh2013}), the \texttt{STRIDE} species tree rooting algorithm \parencite{Emms2017} and the \texttt{FastTree} software for tree inference (v2.1.11; \cite{Price2009}).
-
-%\begin{itemize}
-%	\item Supernova v2.1.1 \href{https://doi.org/10.1101/gr.214874.116}{cite}
-%	\item Longranger v2.2.2
-%	\item proc10xG \url{https://github.com/ucdavis-bioinformatics/proc10xG} commit 7afbfcf
-%	\item nubeam-dedup \url{https://github.com/daihang16/nubeamdedup} commit 25dd385 \href{https://doi.org/10.1093/bioinformatics/btaa112}{cite}
-%	\item KMC \url{https://github.com/tbenavi1/KMC} commit 1df71f6
-%	\item GenomeScope 2.0 \url{https://github.com/tbenavi1/genomescope2.0} commit 5034ed4 \href{https://doi.org/10.1038/s41467-020-14998-3}{cite}
-%	\item (? Smudgeplot commit 950d7b5)
-%	\item Purge\_Dups \url{https://github.com/dfguan/purge_dups} commit e1934bb \href{https://doi.org/10.1093/bioinformatics/btaa025}{cite}
-%	\item AGOUTI \url{https://github.com/svm-zhang/AGOUTI} commit a7e65d6 \href{https://doi.org/10.1186/s13742-016-0136-3}{cite}
-%	\item augustus v3.3.3 (for AGOUTI analysis) (\protect\hyperlink{ref-Stanke2008}{\textbf{Stanke2008?}})
-%	\item Blobtoolkit v2.4.0 \href{https://doi.org/10.1534/g3.119.400908}{cite}
-%	\item KAT v2.4.2 \href{https://doi.org/10.1093/bioinformatics/btw663}{cite}
-%	\item fastp v0.20.1 (\protect\hyperlink{ref-Chen2018a}{\textbf{Chen2018a?}})
-%	\item samtools v1.12 (\protect\hyperlink{ref-Li2009}{\textbf{Li2009?}})
-%	\item minimap2 v2.17 (\protect\hyperlink{ref-LiLi2017}{\textbf{LiLi2017?}})
-%	\item bwa-mem2 v2.2.1 (\protect\hyperlink{ref-VasimuddinMd2019}{\textbf{VasimuddinMd2019?}})
-%	\item bedtools v2.29.2 (\protect\hyperlink{ref-Quinlan2010}{\textbf{Quinlan2010?}})
-%	\item seqkit v0.13.2 (\protect\hyperlink{ref-Shen2016}{\textbf{Shen2016?}})
-%	\item rcorrector v1.0.4
-%	\item trim-galore v0.6.6 \href{https://github.com/FelixKrueger/TrimGalore}{cite} (Cutadapt + FastQC wrapper)
-%	\item busco v5.1.1 (\protect\hyperlink{ref-Seppey2019}{\textbf{Seppey2019?}})
-%	\item assembly\_stats v0.1.4 \href{https://doi.org/10.5281/zenodo.3968774}{cite}
-%	\item ragtag v1.1.1 (\protect\hyperlink{ref-Alonge2019}{\textbf{Alonge2019?}})
-%	\item pilon v1.24 (\protect\hyperlink{ref-Walker2014}{\textbf{Walker2014?}})
-%	\item TETools DFAM container v1.3.1
-%	\item RepeatModeler v2.0.1 (\protect\hyperlink{ref-Flynn2020}{\textbf{Flynn2020?}})
-%	\item cd-hit v4.8.1 (\protect\hyperlink{ref-Fu2012}{\textbf{Fu2012?}})
-%	\item RepeatMasker v4.1.2-p1 (Smit, AFA, Hubley, R. RepeatModeler Open-1.0. 2008-2015 \url{http://www.repeatmasker.org}) (\protect\hyperlink{ref-Smit2013}{\textbf{Smit2013?}})
-%\end{itemize}
 
 
 \section{Results and discussion}
@@ -307,9 +279,9 @@ Repeats are estimated to amount to 57.22, 61.10 and 55.53\% of the bases of Mgal
 The majority of repeats are unclassified, followed by retroelements with a balanced contribution of LINEs and LTR elements
 (detailed \texttt{RepeatMasker} results in \cref{suptab:repeats}).
 
-\subsection{Annotations}
-
-[[Here goes annotation stats]]
+%\subsection{Annotations}
+%
+%[[Here goes annotation stats]]
 
 \subsection{Species tree}
 
