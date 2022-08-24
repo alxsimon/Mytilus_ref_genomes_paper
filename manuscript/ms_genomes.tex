@@ -5,15 +5,12 @@
 
 \include{header.tex}
 
-\title{Draft genomes of the three northern hemisphere blue mussel lineages: North and South European \emph{Mytilus edulis} and Mediterranean \emph{Mytilus galloprovincialis}.}
+\title{Draft genomes of three northern hemisphere blue mussel lineages: North and South European \emph{Mytilus edulis} and Mediterranean \emph{Mytilus galloprovincialis}.}
 
-\author[1,*]{Alexis Simon}
-\author[1]{Christine Arbiol}
-\author[1]{Nicolas Bierne}
+\author[1,2,*]{Alexis Simon}
 
-\affil[1]{CNRS, Univ Montpellier, \ldots{}}
-
-%
+\affil[1]{ISEM, EPHE, IRD, Université Montpellier, Montpellier, France}
+\affil[2]{Center of Population Biology and Department of Evolution and Ecology, University of California Davis, Davis, California, USA}
 
 \begin{document}
 
@@ -23,9 +20,13 @@
 \vspace{1cm}
 \hrule
 \begin{abstract}
-	Using the 10X chromium long reads technology, we provide draft genomes for three closely related blue mussel species from the \emph{Mytilus} species complex.
-	The objective was to produce affordable genomic resources for population and evolutionary genomic studies.
-	Genomes are fragmented but represent a large portion of the genome, with good sizes and BUSCO scores.
+    The blue mussel species complex (\textit{Mytilus edulis}) is of particular interest both as model species in population genetics and ecology,
+    but also as a economic resource in many regions.
+    We add here three new draft genomes to the fast increasing genomic resources of this complex.
+	Using 10X genomics reads, we assembled genomes of closely related blue mussel lineages from the \emph{Mytilus} species complex in the Northern hemisphere.
+	Given the huge diversity within and between lineages in this complex, 
+	the objective was to produce affordable genomic resources for population and evolutionary genomic studies to complement already published genomes.
+	%Genomes are fragmented but represent a large portion of the genome, with good sizes and BUSCO scores.
 \end{abstract}
 
 \vspace{3mm}
@@ -46,15 +47,18 @@ The \textit{Mytilus} species complex has been a model system in population genet
 
 The \textit{Mytilus} species complex is composed of three taxonomically recognized and partially reproductively isolated species in the northern hemisphere,
 \textit{Mytilus edulis}, \textit{M. galloprovincialis} and \textit{M. trossulus}.
-Within each species, evolutionary relevant lineages can be identified.
-Two lineages of \textit{M. galloprovincialis} can be identified, one Atlantic lineage and one Mediterranean lineage separated by a hybrid zone along the Almeria-Oran front \parencite{Quesada1995, Fraisse2016a, ElAyari2019}.
-Three lineages of \textit{M. edulis} can be identified: (i) an American lineage, (ii) a Southern European lineage, and (iii) a Northern European lineage \parencite{Fraisse2016a, Simon2020}.
+Within each species, evolutionary relevant lineages can be identified:
+two lineages in \textit{M. galloprovincialis}, (i)  an Atlantic lineage (MgalATL) and (ii) a Mediterranean lineage (MgalMED), separated by a hybrid zone at the Almeria-Oran front and Algerian coast \parencite{Quesada1995, Fraisse2016a, ElAyari2019}, and
+three lineages in \textit{M. edulis}, (i) an American lineage (MeduAM), (ii) a Southern European lineage (MeduEUS), and (iii) a Northern European lineage (MeduEUN) \parencite{Fraisse2016a, Simon2020}.
+
+Increased effort has been put in the last few years to produce genomic resources in the \textit{Mytilus} species complex.
+[[XXX]]
 
 As an effort to diversify the genomic resources available for the \textit{Mytilus} species complex,
 we assembled and annotate the genomes of three lineages using the 10X chromium technology.
 While our assemblies were initially fragmented due to the high level of heterozygosity,
 we leveraged the existence of a chromosome scale assembly of a sister species to scaffold our assemblies against it.
-We obtained assemblies equivalent to published ones in term of completeness for three new lineages of the species complex using a low sequencing budget and publicly available data.
+We obtained assemblies equivalent to published ones in term of completeness for three new lineages of the Mytilus species complex using a low sequencing budget and publicly available data.
 The resources produced and the assembly pipeline are freely available for use by the community.
 
 \section{Methods}\label{methods}
@@ -77,25 +81,24 @@ One individual for each species of interest was collected and processed fresh.
 
 Collection locations:
 \begin{itemize}
-	\item \emph{M. galloprovincialis} Mediterranean MgalMED; Sète, France
-	\item \emph{M. edulis} Southern European MeduEUS; ???
-	\item \emph{M. edulis} Northern Europe MeduEUN; ???
+	\item \emph{M. galloprovincialis} Mediterranean (MgalMED); Sète ($43^\circ24'35.3''N$, $3^\circ41'41.1''E$, Occitanie, France, Mediterranean Sea)
+	\item \emph{M. edulis} Southern European (MeduEUS); Agon-Coutainville ($49^\circ0'44.784''N$,\\$1^\circ35'55.643''W$, Normandy, France, English Channel)
+	\item \emph{M. edulis} Northern Europe (MeduEUN); Mishukovo ($69^\circ02'34.3''N$, $33^\circ01'45.9''E$, Kola Bay, Russia, Barents Sea)
 \end{itemize}
 
 Whole mussels were placed in 50 mL falcon tubes containing 25 ml of TNES-Urea solution and incubated for 4-6 weeks at room temperature (TNES-Urea: 10 mM Tris-HCl pH 7.4; 120 mM NaCl; 10 mM EDTA pH 8.0; 0.5\% SDS; 4 M urea).
 
-After this period of pre-treatment at ambient temperature, proteinase K was added at a final concentration of 150 \(\mu\)g/mL and the solution was incubated overnight at 56°C.
+After this period of pre-treatment at ambient temperature, proteinase K was added at a final concentration of 150 \(\mu\)g/mL and the solution was incubated overnight at $56^\circ$C.
 
 High Molecular weight genomic DNA was extracted following \textcite{Nakayama1994}.
-We used a 15 mL Phase Lock Gel Heavy extraction with 3 steps of phenol / chloroform / isoamylalcool (25/24/1) Tris pH 8,1 followed by 2 chloroform extractions.
+We used a 15 mL Phase Lock Gel Heavy extraction with three steps of extraction using phenol/chloroform/isoamyl alcohol (25/24/1 proportions) equilibrated with Tris-HCl to pH 8.1, followed by two chloroform extractions.
 After the last extraction, the aqueous supernatant was precipitated with 2 volumes of 100\% EtOH and the pellet was hooked from the solution with a sterile glass Pasteur pipette.
-The pellet was rinsed several times in 80\% EtOH before being dried at room temperature.
+The pellet was rinsed several times with 80\% EtOH before being dried at room temperature.
 
 DNA was resuspended with an appropriate volume of biomolecular water at 65°C for several hours, the duration of this incubation depending on the size of the granules.
 DNA was then stored at 4°C.
 
 Prior to the construction of the DNA libraries, DNA was repaired with NEBNext FFPE DNA Repair Mix according to the manufacturer's instructions.
-
 
 \subsection{Library preparation and sequencing}
 
@@ -108,7 +111,7 @@ Libraries were subsequently sequenced on an Illumina NovaSeq 6000 with an S4 flo
 We preprocessed 10X reads using the following pipeline for use in several algorithms (\cref{draft_asm}).
 We first removed duplicate reads using \texttt{Nubeam-dedup} (\cite{Dai2020}; commit 25dd385).
 We then used \texttt{proc10xG} (\url{https://github.com/ucdavis-bioinformatics/proc10xG}; commit 7afbfcf) to split the reads from their 10X barcodes for further processing.
-We used a custom filtering step designed to remove under- and over-repre\-sented barcodes and their associated reads from the data (\cref{supfig:preproc_MgalMED,supfig:preproc_MeduEUS,supfig:preproc_MeduEUN}, \texttt{filter\_barcodes.R} script, see \cite{Bary\&Gagnaire??}).
+We used a custom filtering step designed to remove under- and over-repre\-sented barcodes and their associated reads from the data (\cref{supfig:preproc_MgalMED,supfig:preproc_MeduEUS,supfig:preproc_MeduEUN}, \texttt{filter\_barcodes.R} script, personal communication of P-A Gagnaire).
 Reads were additionally filtered with \texttt{fastp} (v0.20.1; \cite{Chen2018}) with the main objective to remove poly-G tails created by the Illumina Novaseq sequencing technology.
 We obtained at this point reads equivalent to a short-read sequencing run, usable in some parts of the assembly and quality control pipeline.
 Additionally, to obtain reads compatible to 10X genomics tools, we filtered and reassembled reads with their 10X barcodes in \texttt{proc10xG} using the \texttt{filter\_10xReads.py} and \texttt{regen\_10xReads.py} scripts.
@@ -135,7 +138,7 @@ Finally, the \texttt{AGOUTI} scaffolding pipeline was run using the gene predict
 As a last step, we ran \texttt{Blobtoolkit} (v2.4.0; \cite{Challis2020}) on the three assemblies to evaluate quality and potential contamination levels.
 We used a custom script (\texttt{btk\_conta\_extraction.py}) to filter the assembly contigs based on the taxids found by the \texttt{Blobtoolkit} pipeline to remove the most obvious contaminations.
 Contigs matching taxids associated with viruses, bacteria and non-mollusca eukaryotes were removed.
-More specifically contigs for were removed for virus contamination if they presented a hit percentage of more than 10~\% of their length.
+More specifically contigs were removed for virus contamination if they presented a hit percentage of more than 10~\% of their length.
 Contigs were removed for eukaryote contamination only when presenting only hits to taxa outside Mollusca on more than 10~\% of their length.
 The list of retained contigs was used to filter the fasta assembly file using \texttt{seqkit} (v0.13.2; \cite{Shen2016}).
 
@@ -175,7 +178,7 @@ kofam \parencite{Aramaki2020}, NPFM \parencite{Lu2020}, eggNOG \parencite{Huerta
 
 \subsection{NCBI submission}
 
-The NCBI submission process identified a few errors that needed correcting.
+The NCBI submission process identified a few errors that needed correction.
 A small number of adaptor sequences and duplicates were removed to comply with NCBI requirements
 (see the rule \texttt{ncbi\_submission\_changes.smk} in the pipeline for more details).
 Assemblies are available under the following accessions: 
@@ -231,8 +234,8 @@ With a limited budget of $\sim3000$€ per genome, we managed to produce draft g
 in applications such as population genomics and genetics.
 The method of 10X chromium pseudo-long reads combined with scaffolding using published data provided a quality comparable to published assemblies for \textit{Mytilus} species.
 
-The pre-assembly k-mer analysis carried out using GenomeScope (using 21-mers) showed that, as expected, the genomes were highly heterozygous with values going from $3.49$ to $8.77$~\% (\cref{fig:genomescope}).
-For the MeduEUS data, GenomeScope provides a fit of bad quality and an estimation probably off due to a reduced slightly lower sequencing depth compared to the two other assemblies. In that case, the heterozygous peak was not identifiable.
+The pre-assembly k-mer analysis carried out using GenomeScope (using 21-mers) showed that, as expected, the genomes of MgalMED and MeduEUN were highly heterozygous with values of $3.49$ and $4.03$~\% respectively (\cref{fig:genomescope}).
+The heterozygous peak of MeduEUS was not identifiable due to lower sequencing depth and GenomeScope provides a bad quality fit that we did not interpret.
 
 Highly heterozygous genomes brings the risk of having a large number of duplicate contigs due to the separate assembly of the two alleles from a same locus.
 For this reason, we used the \texttt{purge\_dups} pipeline to try removing a maximum of such bias.
@@ -317,15 +320,14 @@ Annotations and the OrthoFinder pipeline and results are available on the Zenodo
 
 \section*{Acknowledgements}
 
-We thank [[XXX]].
-We thank IFB core cluster for computational resources [[...]]
+I thank Nicolas Bierne and Pierre-Alexandre Gagnaire for their help on the project and discussions.
+I thank Christine Arbiol for DNA extractions.
+Some bioinformatic analyses were performed on the Core Cluster of the Institut Français de Bioinformatique (ANR-11-INBS-0013).
 We thank Tiago Horri for providing his annotation of the American \textit{Mytilus edulis} genome (GCA\_019925275.1).
-AS was supported by the ANR grant [[XXX]] and by the National Institute of General Medical Sciences of the National Institutes of Health (grants NIH R01 GM108779 and R35 GM136290 to Dr Graham Coop).
-
+AS was supported by the French ANR grant TRANSCAN (ANR-18-CE35-0009) and by the National Institute of General Medical Sciences of the National Institutes of Health (grants NIH R01 GM108779 and R35 GM136290 to Graham Coop).
 
 % References
 \printbibliography
-
 
 %=============================================
 % Supp
