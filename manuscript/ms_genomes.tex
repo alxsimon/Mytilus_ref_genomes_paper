@@ -21,12 +21,13 @@
 \hrule
 \begin{abstract}
     The blue mussel species complex (\textit{Mytilus edulis}) is of particular interest both as model species in population genetics and ecology,
-    but also as a economic resource in many regions.
-    We add here three new draft genomes to the fast increasing genomic resources of this complex.
-	Using 10X genomics reads, we assembled genomes of closely related blue mussel lineages from the \emph{Mytilus} species complex in the Northern hemisphere.
+    but also as an economic resource in many regions.
+	Using 10X genomics pseudo long reads, I assembled genomes of closely related blue mussel lineages from the \emph{Mytilus} species complex in the Northern hemisphere.
 	Given the huge diversity within and between lineages in this complex, 
-	the objective was to produce affordable genomic resources for population and evolutionary genomic studies to complement already published genomes.
-	%Genomes are fragmented but represent a large portion of the genome, with good sizes and BUSCO scores.
+	the objective was to produce affordable genomic resources for population and evolutionary genomic studies to broaden the coverage of this diverse species complex.
+	I used transcriptome guided corrections and scaffolding on a chromosome scale genome of a close species to reduce the fragmentation of the genomes.
+	The result is a set of partially fragmented genomes of equivalent completeness to already published genomes.
+	Three new draft genomes are added to the fast increasing genomic resources of this complex for the Mediterranean \textit{M. galloprovincialis}, the South-European \textit{M. edulis} and the the North-European \textit{M. edulis}.
 \end{abstract}
 
 \vspace{3mm}
@@ -44,21 +45,35 @@ $^{*}$ \textbf{Corresponding author}: \href{mailto:alexis.simon@normalesup.org}{
 \section{Rationale and objectives}\label{introduction}
 
 The \textit{Mytilus} species complex has been a model system in population genetics, adaptation, hybridization and speciation since genetic variants could be identified \parencite{Milkman1970, Koehn1972, Ahmad1977, Skibinski1978, Quesada1995b, Bierne2003, Fraisse2016a, Simon2021}.
+This genus is also an important food source worldwide.
+While \textit{Mytilus} species are actively cultured,
+human selection has been limited in blue mussels as most of the production rely on naturally captured spat.
+Therefore, given the extreme diversity observed within and between species in this genus,
+extensive genomic resources are needed to both advance our fundamental knowledge and potentially accrue our capacity to
+improve its culture in the face of large environmental changes.
 
 The \textit{Mytilus} species complex is composed of three taxonomically recognized and partially reproductively isolated species in the northern hemisphere,
-\textit{Mytilus edulis}, \textit{M. galloprovincialis} and \textit{M. trossulus}.
+\textit{Mytilus edulis}, \textit{M. galloprovincialis} and \textit{M. trossulus}; and several other species in the southern hemisphere (\textit{M. chilensis}, \textit{M. platensis}, \textit{M. planulatus}).
+Between those species, hybridization is possible in contact zones, either natural or anthropogenic.
 Within each species, evolutionary relevant lineages can be identified:
 two lineages in \textit{M. galloprovincialis}, (i)  an Atlantic lineage (MgalATL) and (ii) a Mediterranean lineage (MgalMED), separated by a hybrid zone at the Almeria-Oran front and Algerian coast \parencite{Quesada1995, Fraisse2016a, ElAyari2019}, and
 three lineages in \textit{M. edulis}, (i) an American lineage (MeduAM), (ii) a Southern European lineage (MeduEUS), and (iii) a Northern European lineage (MeduEUN) \parencite{Fraisse2016a, Simon2020}.
+Two close species in the genus are of interest: \textit{M. coruscus}, a species found in Asia, and \textit{M. californianus}, a species found on the Pacific coast of North America. While they do not appear to readily hybridize with species of the \textit{Mytilus} species complex, they are of similar interest to the study of marine mussels.
 
 Increased effort has been put in the last few years to produce genomic resources in the \textit{Mytilus} species complex.
-[[XXX]]
+Quality genomes are available for the following lineages of \textit{Mytilus}: 
+Atlantic \textit{M. galloprovincialis} \parencite{Gerdol2020},
+Southern European \textit{M. edulis} \parencite{Corrochano-Fraile2022}, 
+\textit{M. coruscus} \parencite{Yang2021, Li2020}, 
+\textit{M. californianus} \parencite{Paggeot2022},
+and an American \textit{M. edulis} assembly (unpublished, accession GCA\_019925275).
+This increased effort has highlighted characteristics of interest in those species such as a high proportion of gene presence-absence \parencite{Gerdol2020} or evidence of genome duplication \parencite{Corrochano-Fraile2022}.
 
 As an effort to diversify the genomic resources available for the \textit{Mytilus} species complex,
-we assembled and annotate the genomes of three lineages using the 10X chromium technology.
-While our assemblies were initially fragmented due to the high level of heterozygosity,
-we leveraged the existence of a chromosome scale assembly of a sister species to scaffold our assemblies against it.
-We obtained assemblies equivalent to published ones in term of completeness for three new lineages of the Mytilus species complex using a low sequencing budget and publicly available data.
+I assembled and annotated the genomes of three lineages using the 10X chromium technology.
+While these assemblies were initially fragmented due to the high level of heterozygosity,
+I leveraged the existence of a chromosome scale assembly of a sister species to scaffold against it.
+I obtained assemblies equivalent to published ones in term of completeness for three new lineages of the Mytilus species complex using a low sequencing budget and publicly available data.
 The resources produced and the assembly pipeline are freely available for use by the community.
 
 \section{Methods}\label{methods}
@@ -72,7 +87,7 @@ However, all parameters, software versions and steps are retrievable from the re
 \paragraph{Important caveat:}
 The assembled genome of MeduEUN (\textit{M. edulis} Northern lineage) was initially thought to be \textit{M. trossulus}.
 Therefore some assembly and annotation steps wrongly used \textit{M. trossulus} transcriptomes.
-While this is not ideal, we think results have not been strongly impacted by this issue.
+While this is not ideal, I think results have not been strongly impacted by this issue.
 
 
 \subsection{Biological material and DNA extraction}
@@ -91,7 +106,7 @@ Whole mussels were placed in 50 mL falcon tubes containing 25 ml of TNES-Urea so
 After this period of pre-treatment at ambient temperature, proteinase K was added at a final concentration of 150 \(\mu\)g/mL and the solution was incubated overnight at $56^\circ$C.
 
 High Molecular weight genomic DNA was extracted following \textcite{Nakayama1994}.
-We used a 15 mL Phase Lock Gel Heavy extraction with three steps of extraction using phenol/chloroform/isoamyl alcohol (25/24/1 proportions) equilibrated with Tris-HCl to pH 8.1, followed by two chloroform extractions.
+A 15 mL Phase Lock Gel Heavy extraction was used with three steps of extraction using phenol/chloroform/isoamyl alcohol (25/24/1 proportions) equilibrated with Tris-HCl to pH 8.1, followed by two chloroform extractions.
 After the last extraction, the aqueous supernatant was precipitated with 2 volumes of 100\% EtOH and the pellet was hooked from the solution with a sterile glass Pasteur pipette.
 The pellet was rinsed several times with 80\% EtOH before being dried at room temperature.
 
@@ -108,35 +123,35 @@ Libraries were subsequently sequenced on an Illumina NovaSeq 6000 with an S4 flo
 
 \subsection{Preprocessing 10X reads}\label{preproc}
 
-We preprocessed 10X reads using the following pipeline for use in several algorithms (\cref{draft_asm}).
-We first removed duplicate reads using \texttt{Nubeam-dedup} (\cite{Dai2020}; commit 25dd385).
-We then used \texttt{proc10xG} (\url{https://github.com/ucdavis-bioinformatics/proc10xG}; commit 7afbfcf) to split the reads from their 10X barcodes for further processing.
-We used a custom filtering step designed to remove under- and over-repre\-sented barcodes and their associated reads from the data (\cref{supfig:preproc_MgalMED,supfig:preproc_MeduEUS,supfig:preproc_MeduEUN}, \texttt{filter\_barcodes.R} script, personal communication of P-A Gagnaire).
+I preprocessed 10X reads using the following pipeline for use in several algorithms (\cref{draft_asm}).
+I first removed duplicate reads using \texttt{Nubeam-dedup} (\cite{Dai2020}; commit 25dd385).
+I then used \texttt{proc10xG} (\url{https://github.com/ucdavis-bioinformatics/proc10xG}; commit 7afbfcf) to split the reads from their 10X barcodes for further processing.
+I used a custom filtering step designed to remove under- and over-repre\-sented barcodes and their associated reads from the data (\cref{supfig:preproc_MgalMED,supfig:preproc_MeduEUS,supfig:preproc_MeduEUN}, \texttt{filter\_barcodes.R} script, personal communication of P-A Gagnaire).
 Reads were additionally filtered with \texttt{fastp} (v0.20.1; \cite{Chen2018}) with the main objective to remove poly-G tails created by the Illumina Novaseq sequencing technology.
-We obtained at this point reads equivalent to a short-read sequencing run, usable in some parts of the assembly and quality control pipeline.
-Additionally, to obtain reads compatible to 10X genomics tools, we filtered and reassembled reads with their 10X barcodes in \texttt{proc10xG} using the \texttt{filter\_10xReads.py} and \texttt{regen\_10xReads.py} scripts.
+I obtained at this point reads equivalent to a short-read sequencing run, usable in some parts of the assembly and quality control pipeline.
+Additionally, to obtain reads compatible to 10X genomics tools, I filtered and reassembled reads with their 10X barcodes in \texttt{proc10xG} using the \texttt{filter\_10xReads.py} and \texttt{regen\_10xReads.py} scripts.
 
 \subsection{Initial genome assemblies}\label{draft_asm}
 
-For each genome we used \texttt{Supernova} v2.1.1 \parencite{Weisenfeld2017} to assemble raw 10X reads.
-To avoid hard stops in \texttt{Supernova} due to both data quantity slightly under 10X genomics recommendations and an overestimation of genome size by Supernova, we used all available reads (\texttt{--maxreads='all'}) and accepted extreme coverage (\texttt{--accept-extreme-coverage}).
-We produced every style of Fasta output available in \texttt{Supernova} but only used the pseudo-haploid output in the following pipeline.
+For each genome I used \texttt{Supernova} v2.1.1 \parencite{Weisenfeld2017} to assemble raw 10X reads.
+To avoid hard stops in \texttt{Supernova} due to both data quantity slightly under 10X genomics recommendations and an overestimation of genome size by Supernova, I used all available reads (\texttt{--maxreads='all'}) and accepted extreme coverage (\texttt{--accept-extreme-coverage}).
+I produced every style of Fasta output available in \texttt{Supernova} but only used the pseudo-haploid output in the following pipeline.
 
-To remove duplicate haplotypes in the assemblies, we followed the \texttt{purge\_dups} pipeline (\cite{Guan2020}; commit e1934bb).
-We first used the \texttt{longranger} v2.2.2 align algorithm to map preprocessed reads (\cref{preproc}) to the pseudo-haploid genomes to use in the \texttt{ngscstat} step.
+To remove duplicate haplotypes in the assemblies, I followed the \texttt{purge\_dups} pipeline (\cite{Guan2020}; commit e1934bb).
+I first used the \texttt{longranger} v2.2.2 align algorithm to map preprocessed reads (\cref{preproc}) to the pseudo-haploid genomes to use in the \texttt{ngscstat} step.
 \texttt{Minimap2} (v2.17; \cite{Li2017}) was used in the contig self-mapping step.
-We obtained the purged assemblies using the \texttt{get\_seqs} steps without restricting the purging to the end of contigs (without the \texttt{-e} option).
+I obtained the purged assemblies using the \texttt{get\_seqs} steps without restricting the purging to the end of contigs (without the \texttt{-e} option).
 
-We used \texttt{AGOUTI} (\url{https://github.com/svm-zhang/AGOUTI}; commit a7e65d6; \cite{Zhang2016a}) to improve scaffolding by using paired end RNA-seq reads.
-For each species, a different set of published transcriptomes were used (See Supplementary File 1 for accession numbers).
+I used \texttt{AGOUTI} (\url{https://github.com/svm-zhang/AGOUTI}; commit a7e65d6; \cite{Zhang2016a}) to improve scaffolding by using paired end RNA-seq reads.
+For each species, a different set of published transcriptomes were used (see Supplementary File 1 for accession numbers).
 \texttt{AGOUTI} require a gene prediction as input in addition to RNA-seq reads.
-We used \texttt{Augustus} (v3.3.3; \cite{Stanke2008}) to produce an intermediate annotation for each assembly using the \textit{Caenorhabditis} model.
+I used \texttt{Augustus} (v3.3.3; \cite{Stanke2008}) to produce an intermediate annotation for each assembly using the \textit{Caenorhabditis} model.
 RNA-seq reads were first cleaned using \texttt{rcorrector} (v1.0.4; \cite{Song2015}) and \texttt{trimgalore} (v0.6.6; \url{https://www.bioinformatics.babraham.ac.uk/projects/trim_galore}; \texttt{--quality 20 \\--stringency 1 -e 0.1 --length 70}).
 RNA-seq reads were mapped independently using \texttt{bwa-mem2} (v2.2.1; \cite{VasimuddinMd2019}), and then merged as a common bam file for each assembly with \texttt{samtools} (v1.12; \cite{Li2009}).
 Finally, the \texttt{AGOUTI} scaffolding pipeline was run using the gene prediction and mapped RNA-seq reads (\texttt{-minMQ 20 -maxFracMM 0.05}; using \texttt{python} v2.7.15 and \texttt{samtools} v1.10 for compatibility).
 
-As a last step, we ran \texttt{Blobtoolkit} (v2.4.0; \cite{Challis2020}) on the three assemblies to evaluate quality and potential contamination levels.
-We used a custom script (\texttt{btk\_conta\_extraction.py}) to filter the assembly contigs based on the taxids found by the \texttt{Blobtoolkit} pipeline to remove the most obvious contaminations.
+As a last step, I ran \texttt{Blobtoolkit} (v2.4.0; \cite{Challis2020}) on the three assemblies to evaluate quality and potential contamination levels.
+I used a custom script (\texttt{btk\_conta\_extraction.py}) to filter the assembly contigs based on the taxids found by the \texttt{Blobtoolkit} pipeline to remove the most obvious contaminations.
 Contigs matching taxids associated with viruses, bacteria and non-mollusca eukaryotes were removed.
 More specifically contigs were removed for virus contamination if they presented a hit percentage of more than 10~\% of their length.
 Contigs were removed for eukaryote contamination only when presenting only hits to taxa outside Mollusca on more than 10~\% of their length.
@@ -146,31 +161,31 @@ The list of retained contigs was used to filter the fasta assembly file using \t
 \subsection{Scaffolding on the \textit{Mytilus coruscus} genome}
 
 At the time of assembly, the closest relative of the \textit{Mytilus} species of interest with a chromosome scale assembly was \textit{Mytilus coruscus} (GCA\_017311375.1; \cite{Yang2021}).
-Given the conserved number of 14 chromosomes in the \textit{Mytilus} genus, we decided to scaffold our contigs on this high quality reference.
-Additionally, we had Oxford Nanopore reads for the MeduEUN individual. 
-We used \texttt{minimap2} (v2.17; \cite{Li2017}) and \texttt{LRScaf} (v1.1.10; \url{https://github.com/shingocat/lrscaf}) to first improve the MeduEUN assembly with this small amount of long reads.
+Given the conserved number of 14 chromosomes in the \textit{Mytilus} genus, I decided to scaffold our contigs on this high quality reference.
+Additionally, I had Oxford Nanopore reads for the MeduEUN individual. 
+I used \texttt{minimap2} (v2.17; \cite{Li2017}) and \texttt{LRScaf} (v1.1.10; \url{https://github.com/shingocat/lrscaf}) to first improve the MeduEUN assembly with this small amount of long reads.
 
-Then for each assembly, we ran the scaffolder \texttt{RagTag} (v1.1.1; \cite{Alonge2021}) to position contigs on the \emph{M. coruscus} chromosomal assembly.
+Then for each assembly, I ran the scaffolder \texttt{RagTag} (v1.1.1; \cite{Alonge2021}) to position contigs on the \emph{M. coruscus} chromosomal assembly.
 
 A final polishing step was performed using \texttt{Pilon} (v1.24; \cite{Walker2014}).
 \texttt{Pilon} attempts to improve the assembly based on mapped read information (gap filling and error corrections).
-We used \texttt{bwa-mem2} to map the debarcoded and filtered 10X reads (\cref{preproc}).
+I used \texttt{bwa-mem2} to map the debarcoded and filtered 10X reads (\cref{preproc}).
 In addition, Oxford Nanopore reads for MeduEUN were also used in \texttt{Pilon} for the given assembly.
 
 \subsection{Repeats}
 
-We masked repeats for the purpose of annotation using \texttt{RepeatModeler} (v2.0.1; \cite{Flynn2020}) and \texttt{RepeatMasker} (v4.1.2-p1; \cite{Smit2013}) through the TETools DFAM container (v1.3.1; \url{https://hub.docker.com/r/dfam/tetools}).
-We first built repeat databases for each of five assemblies MgalMED, MeduEUS, MeduEUN, \textit{M. coruscus} (GCA\_017311375.1; \cite{Yang2021}) and \textit{M. galloprovincialis} from the Atlantic (GCA\_900618805.1; \cite{Gerdol2020}).
-Then, we built a common \textit{Mytilus} database of repeats by merging those five databases using \texttt{cd-hit} (v4.8.1; \cite{Fu2012}). We used the same options as used by default in \texttt{RepeatModeler}: \texttt{-aS 0.8 -c 0.8 -g 1 -G 0 -A 80 -M 10000}.
+I masked repeats for the purpose of annotation using \texttt{RepeatModeler} (v2.0.1; \cite{Flynn2020}) and \texttt{RepeatMasker} (v4.1.2-p1; \cite{Smit2013}) through the TETools DFAM container (v1.3.1; \url{https://hub.docker.com/r/dfam/tetools}).
+I first built repeat databases for each of five assemblies MgalMED, MeduEUS, MeduEUN, \textit{M. coruscus} (GCA\_017311375.1; \cite{Yang2021}) and \textit{M. galloprovincialis} from the Atlantic (GCA\_900618805.1; \cite{Gerdol2020}).
+Then, I built a common \textit{Mytilus} database of repeats by merging those five databases using \texttt{cd-hit} (v4.8.1; \cite{Fu2012}). I used the same options as used by default in \texttt{RepeatModeler}: \texttt{-aS 0.8 -c 0.8 -g 1 -G 0 -A 80 -M 10000}.
 Finally, soft repeat masking was performed on the assemblies with \texttt{RepeatMasker} using the merged database.
 
 \subsection{Annotation}
 
-We used \texttt{Braker2} (v2.1.6; \cite{Bruna2021}) as to obtain structural annotations, using both a protein database and RNA-seq reads (preprocessed in \cref{draft_asm}).
-To build the protein database, we used all \textit{Mollusca} proteins (taxid 6447) from OrthoDB (v10.1; \cite{Kriventseva2019}).
-To provide gene presence hints, we mapped all RNA-seq reads for each species using \texttt{HISAT2} (v2.2.1; \cite{Kim2019}).
+I used \texttt{Braker2} (v2.1.6; \cite{Bruna2021}) as to obtain structural annotations, using both a protein database and RNA-seq reads (preprocessed in \cref{draft_asm}).
+To build the protein database, I used all \textit{Mollusca} proteins (taxid 6447) from OrthoDB (v10.1; \cite{Kriventseva2019}).
+To provide gene presence hints, I mapped all RNA-seq reads for each species using \texttt{HISAT2} (v2.2.1; \cite{Kim2019}).
 
-We used the \texttt{Mantis} pipeline (v1.5.5; \cite{Queiros2021}) to obtain consensus functional annotations of genes based on multiple databases.
+I used the \texttt{Mantis} pipeline (v1.5.5; \cite{Queiros2021}) to obtain consensus functional annotations of genes based on multiple databases.
 Protein sequences for each assembly were built from the structural annotations using the \texttt{python} module \texttt{gff3tool} (v2).
 \texttt{Mantis} was run with default parameters and databases:
 kofam \parencite{Aramaki2020}, NPFM \parencite{Lu2020}, eggNOG \parencite{Huerta-Cepas2019}, pfam \parencite{El-Gebali2019}, and tcdb \parencite{Saier2021}.
@@ -190,37 +205,37 @@ and JAKGDH000000000 for MeduEUN.
 \subsection{Quality assessments and comparisons}
 
 Preprocessed 10X reads (\cref{preproc}) were used to first estimate estimate genome size and heterozygosities of the three individuals.
-We used the reference free k-mer based method \texttt{GenomeScope} (\url{https://github.com/tbenavi1/genomescope2.0}; commit 5034ed4; \cite{Ranallo-Benavidez2020}) and the fork of the \texttt{KMC} k-mer  counting program (\url{https://github.com/tbenavi1/KMC}; commit 1df71f6).
+I used the reference free k-mer based method \texttt{GenomeScope} (\url{https://github.com/tbenavi1/genomescope2.0}; commit 5034ed4; \cite{Ranallo-Benavidez2020}) and the fork of the \texttt{KMC} k-mer  counting program (\url{https://github.com/tbenavi1/KMC}; commit 1df71f6).
 
 Assembly statistics were computed with the python module \texttt{assembly\_stats} (v0.1.4; \cite{Trizna2020}).
 
-To assess the remaining level of duplication in the assemblies, we used the program \texttt{KAT} (v2.4.2; \cite{Mapleson2017}) to compare k-mer spectra from reads (preprocessed 10X) and from the assembly.
+To assess the remaining level of duplication in the assemblies, I used the program \texttt{KAT} (v2.4.2; \cite{Mapleson2017}) to compare k-mer spectra from reads (preprocessed 10X) and from the assembly.
 
 Finally, gene completion analyses were carried out using \texttt{BUSCO} (v5.1.1; \cite{Manni2021}).
-We used both a Metazoan (\texttt{metazoa\_odb10.2021-02-24}) and Molluscan (\texttt{mollusca\_odb10.2020-08-05}) database to assess and compare new and published assemblies.
-We compared our assemblies to the following published ones:
+I used both a Metazoan (\texttt{metazoa\_odb10.2021-02-24}) and Molluscan (\texttt{mollusca\_odb10.2020-08-05}) database to assess and compare new and published assemblies.
+I compared our assemblies to the following published ones:
 \begin{itemize}
 	\item \textit{M. coruscus}, GCA\_017311375.1, \textcite{Yang2021};
 	\item \textit{M. galloprovincialis} from the Altantic lineage, GCA\_900618805.1, \textcite{Gerdol2020};
-	\item \textit{M. edulis} from the Southern European lineage, GCA\_905397895.1, \textcite{Corrochano-Fraile2021}
+	\item \textit{M. edulis} from the Southern European lineage, GCA\_905397895.1, \textcite{Corrochano-Fraile2022}
 	\item \textit{M. edulis} from the American lineage, GCA\_019925275.1.
 \end{itemize}
 
 
 \subsection{Phylogenetic species tree}
 
-We compiled protein sequences from published \textit{Mytilus} genomes and transcriptomes,
+I compiled protein sequences from published \textit{Mytilus} genomes and transcriptomes,
 in addition to the current three genomes and annotations, to build a species tree.
-We used transcriptomes produced in \textcite{Popovic2020a} for American \textit{M. edulis}, 
+I used transcriptomes produced in \textcite{Popovic2020a} for American \textit{M. edulis}, 
 Mediterranean \textit{M. galloprovincialis}, \textit{M. trossulus}, \textit{M. californianus}.
 Transcriptomes were translated using the \texttt{seqkit} program (v2.2.0; \cite{Shen2016})
-We used genomes and associated annotations of \textit{M. coruscus} (GCA\_017311375.1; \textcite{Yang2021}),
-Southern European \textit{M. edulis} (GCA\_905397895.1; \textcite{Corrochano-Fraile2021}),
-Atlantic \textit{M. galloprovincialis} (GCA\_900618805.1; \textcite{Gerdol2020}),
+I used genomes and associated annotations of \textit{M. coruscus} (GCA\_017311375.1; \cite{Yang2021}),
+Southern European \textit{M. edulis} (GCA\_905397895.1; \cite{Corrochano-Fraile2022}),
+Atlantic \textit{M. galloprovincialis} (GCA\_900618805.1; \cite{Gerdol2020}),
 and American \textit{M. edulis} (GCA\_019925275.1; annotation as personal communication of Tiago Hori, PEIMSO).
 For GCA\_019925275.1, protein sequences where retrieve from the fasta and gff files using the python module gff3tool (v2.1.0).
 
-We used \texttt{OrthoFinder} (v2.5.4; \cite{Emms2015, Emms2019}) to find orthogroups and orthologue genes.
+I used \texttt{OrthoFinder} (v2.5.4; \cite{Emms2015, Emms2019}) to find orthogroups and orthologue genes.
 Species tree was inferred using the MSA method of \texttt{OrthoFinder} \parencite{Emms2018} using the \texttt{MAFFT} aligner (v7.505; \cite{Katoh2013}), the \texttt{STRIDE} species tree rooting algorithm \parencite{Emms2017} and the \texttt{FastTree} software for tree inference (v2.1.11; \cite{Price2009}).
 
 
@@ -229,16 +244,16 @@ Species tree was inferred using the MSA method of \texttt{OrthoFinder} \parencit
 
 \subsection{Assembly results}
 
-We introduce here newly assembled genomes from three lineages of the \textit{Mytilus} species complex.
-With a limited budget of $\sim3000$€ per genome, we managed to produce draft genomes of enough quality to be useful
+I introduce here newly assembled genomes from three lineages of the \textit{Mytilus} species complex.
+With a limited sequencing budget of $\sim3000$€ per genome, I managed to produce draft genomes of enough quality to be useful
 in applications such as population genomics and genetics.
 The method of 10X chromium pseudo-long reads combined with scaffolding using published data provided a quality comparable to published assemblies for \textit{Mytilus} species.
 
 The pre-assembly k-mer analysis carried out using GenomeScope (using 21-mers) showed that, as expected, the genomes of MgalMED and MeduEUN were highly heterozygous with values of $3.49$ and $4.03$~\% respectively (\cref{fig:genomescope}).
-The heterozygous peak of MeduEUS was not identifiable due to lower sequencing depth and GenomeScope provides a bad quality fit that we did not interpret.
+The heterozygous peak of MeduEUS was not identifiable due to lower sequencing depth and GenomeScope provides a bad quality fit that I did not interpret.
 
-Highly heterozygous genomes brings the risk of having a large number of duplicate contigs due to the separate assembly of the two alleles from a same locus.
-For this reason, we used the \texttt{purge\_dups} pipeline to try removing a maximum of such bias.
+Highly heterozygous genomes brings the risk of having a large number of duplicate contigs due to the separate assembly of the multiple alleles from given locus.
+For this reason, I used the \texttt{purge\_dups} pipeline to try removing a maximum of such bias.
 This procedure reduced the number of complete duplicated genes in all assemblies (\cref{supfig:busco}, v1 to v4).
 Overall, the compared \texttt{KAT} spectra analyses show that the assembly steps reduced the amount of duplication in all assemblies (\cref{supfig:kat_spectra}).
 
@@ -252,9 +267,11 @@ Overall, the compared \texttt{KAT} spectra analyses show that the assembly steps
 	\label{fig:genomescope}
 \end{figure}
 
-Stats:
-GC contents: 32.1\%, 34.6\%, 32.1\%
-
+Assembly statistics for the three new assemblies and four publicly available assemblies are presented in \cref{tab:asm_stats} (complete statistics are presented in Supplementary File 2).
+With the exception of MeduEUS, GC content and genome sizes are close to what is found in other lineages.
+While the number of scaffolds for the new assemblies is still high, most of the genomes are contained in 14 large scaffolds corresponding to the number of chromosomes found in \textit{Mytilus} species.
+Residual scaffolds are sequences that could not be placed on the \textit{M. coruscus} genome,
+maybe due to inter-species presence-absence or too high divergence.
 
 % Table 1
 \begin{landscape}
@@ -262,8 +279,8 @@ GC contents: 32.1\%, 34.6\%, 32.1\%
 \end{landscape}
 
 
-To assess the completeness of our assemblies, we compared them to four \textit{Mytilus} published assemblies on the basis of a Metazoan and a Molluscan set of single copy orthologous genes using BUSCO (\cref{fig:busco}).
-Overall, we show that our assemblies are equivalent to the published ones in terms of completeness.
+To assess the completeness of our assemblies, I compared them to four \textit{Mytilus} published assemblies on the basis of a Metazoan and a Molluscan set of single copy orthologous genes using BUSCO (\cref{fig:busco}).
+Overall, I show that our assemblies are equivalent to the published ones in terms of completeness.
 
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{figures/Fig2_busco.pdf}
@@ -274,17 +291,20 @@ Overall, we show that our assemblies are equivalent to the published ones in ter
 The MeduEUS assembly suffered from an increased level of contamination compared to the other two assemblies.
 Despite a broad contaminant filtering step, the Busco blob analysis (\cref{supfig:btk-blob-MeduEUS})
 shows a second GC content peak centered around 40\% (above the ~32\% peaks of this and other genomes).
+This contamination could for instance be due to bacteria present in the mussel if its physiological state was degraded before fixation.
+The metagenomic composition of contaminants was not investigated.
 
 \subsection{Repeat contents}
 
 More than half of each genome was identified as repeats and masked by \texttt{RepeatMasker}.
-Repeats are estimated to amount to 57.22, 61.10 and 55.53\% of the bases of MgalMED, MeduEUS and MeduEUN assemblies respectively.
+Repeats are estimated to amount to 57.22, 61.10 and 55.53\% of MgalMED, MeduEUS and MeduEUN assemblies respectively.
 The majority of repeats are unclassified, followed by retroelements with a balanced contribution of LINEs and LTR elements
 (detailed \texttt{RepeatMasker} results in \cref{suptab:repeats}).
 
-%\subsection{Annotations}
-%
-%[[Here goes annotation stats]]
+\subsection{Annotations}
+
+The assemblies were annotated using a consensus pipeline to provide additional resources for future uses.
+These annotation were used to produce the following species tree.
 
 \subsection{Species tree}
 
@@ -306,24 +326,22 @@ It shows that the assemblies and the published genomes and transcriptomes are cl
 	\label{fig:tree}
 \end{figure}
 
-
-
-%\section{Conclusion}\label{conclusion}
-
 \section*{Data availability}
 
 Raw data are available under BioProject PRJNA785550.
 Assemblies are available under accessions JAKGDF000000000 (MgalMED), JAKGDG000000000 (MeduEUS), and JAKGDH000000000 (MeduEUN).
 The assembly pipeline is available at \url{https://github.com/alxsimon/assembly_10x}.
-Annotations and the OrthoFinder pipeline and results are available on the Zenodo archive [[XXX]].
-
+Annotations, and the OrthoFinder pipeline and results are available in the Zenodo archive \href{https://doi.org/10.5281/zenodo.7034399}{10.5281/zenodo.7034399}.
+Data and code for this manuscript are available at \url{https://github.com/alxsimon/Mytilus_ref_genomes_paper}.
 
 \section*{Acknowledgements}
 
-I thank Nicolas Bierne and Pierre-Alexandre Gagnaire for their help on the project and discussions.
-I thank Christine Arbiol for DNA extractions.
+I thank Nicolas Bierne and Pierre-Alexandre Gagnaire for their help on the project and discussions;
+Christine Arbiol for DNA extractions;
+Maurine Hammel and Erika Burioli for sharing their transcriptome data;
+and Petr Strelkov for sampling of the \textit{M. trossulus}.
 Some bioinformatic analyses were performed on the Core Cluster of the Institut Français de Bioinformatique (ANR-11-INBS-0013).
-We thank Tiago Horri for providing his annotation of the American \textit{Mytilus edulis} genome (GCA\_019925275.1).
+I thank Tiago Horri for providing his annotation of the American \textit{Mytilus edulis} genome (GCA\_019925275.1).
 AS was supported by the French ANR grant TRANSCAN (ANR-18-CE35-0009) and by the National Institute of General Medical Sciences of the National Institutes of Health (grants NIH R01 GM108779 and R35 GM136290 to Graham Coop).
 
 % References
