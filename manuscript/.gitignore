@@ -1,5 +1,3 @@
-fetch_figures.sh
-
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -12,6 +10,7 @@ fetch_figures.sh
 *.fot
 *.cb
 *.cb2
+*.out
 
 ## Intermediate documents:
 *.dvi
